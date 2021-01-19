@@ -15,6 +15,7 @@ var KhoQTRouter=require('./routes/Kho/KhoQT');
 var KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
 var logoutRouter= require('./routes/logout');
+const userListRouter=require('./routes/admin/userList');
 // const IN_PROD= node
 
 var app = express();
@@ -55,6 +56,7 @@ app.use('/home/kho/KhoQT',KhoQTRouter);
 app.use('/home/kho/QCTC',KhoQCTCRouter);
 app.use('/home/VNWC/VNWC_SDTC',VNWCSDTCCRouter);
 app.use('/logout',logoutRouter);
+app.use('/userList',userListRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
