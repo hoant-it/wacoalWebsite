@@ -34,7 +34,8 @@ return result;
 
 router.get('/',milderedirectHome, async(req,res) =>{
   res.render('login',{
-    messageError:""
+    messageError:"",
+    html:""
   });
 });
 

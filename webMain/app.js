@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const upload=require('express-fileupload');
+
+
 
 
 var indexRouter = require('./routes/index');
@@ -17,9 +20,12 @@ var KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
 var logoutRouter= require('./routes/logout');
 const userListRouter=require('./routes/admin/userList');
+const KhoDMC_Router=require('./routes/Kho/KhoDMC')
 // const IN_PROD= node
 
 var app = express();
+
+app.use(upload());
 
 
 // view engine setup
@@ -58,6 +64,7 @@ app.use('/home/kho/QCTC',KhoQCTCRouter);
 app.use('/home/VNWC/VNWC_SDTC',VNWCSDTCCRouter);
 app.use('/logout',logoutRouter);
 app.use('/userList',userListRouter);
+app.use('/home/kho/DMC',KhoDMC_Router)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

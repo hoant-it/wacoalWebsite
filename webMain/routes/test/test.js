@@ -1,156 +1,111 @@
 var express = require('express');
 var router = express.Router();
 const db= require('../../databases/database').sequelize;
+// const importExcel=require('convert-excel-to-json');
+const xlsx= require('xlsx');
 
-// var arr=[{
-//   "id":1,
-//   "title":"thể thao",
-//   "parent_id":0,
-//   "level":0,
-//   "href":""
-// },
-// {
-//   "id":2,
-//   "title":"xa hoi",
-//   "parent_id":0,
-//   "level":0,
-//   "href":""
-// },
-// {
-//   "id":3,
-//   "title":"the thao trong nuoc",
-//   "parent_id":1,
-//   "level":0,
-//   "href":""
-// },
-// {
-//   "id":4,
-//   "title":"giao thong",
-//   "parent_id":2,
-//   "level":0,
-//   "href":"/test"
-// },
-// {
-//   "id":5,
-//   "title":"Moi truong",
-//   "parent_id":2,
-//   "level":0,
-//   "href":"/test"
-// },
-// {
-//   "id":6,
-//   "title":"the thao quoc te 1",
-//   "parent_id":1,
-//   "level":0,
-//   "href":"/test"
-// },
-// {
-//   "id":7,
-//   "title":"the thao quoc te 2",
-//   "parent_id":3,
-//   "level":0,
-//   "href":"/home"
-// },
-// {
-//   "id":8,
-//   "title":"the thao quoc te 3",
-//   "parent_id":3,
-//   "level":0,
-//   "href":"/test"
-// },
-// ]
-// var arrfinal=data_Tree(arr,)
-result=[];
- html=`<ul class="nav side-menu" id="side-menu">`;
-function data_Tree(arr,parent_id="0", level=0){
-arr.forEach(element => {
-  if(element["parent_id"]=== parent_id){
-    element["level"]=level;
-    if(element["href"]===""){
-      html+=`<li class=""><a></i> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
-      html+=`<ul class="nav child_menu" style="display: block;">`;
-    result.push(element);
-    child=data_Tree(arr,element["id"],level + 1);
-      result.concat(child);
-      html+=`</ul>`
-    html+=`</li>`
-    }
-    else{
-      html+=`<li class=""><a href="${element["href"]}"> ${element["title"]}</a>`;
-    result.push(element);
-    child=data_Tree(arr,element["id"],level + 1);
-      result.concat(child);
-    html+=`</li>`
-    }
-  }
+
+router.get('/', (req,res) => {
+res.render('test',{
+  userId:'',
+  html:''
+})
 });
-return result;
-}
-var list_cat=[];
-// list_cat=data_Tree(arr,0);
-html+=`</ul>`
 
-router.get("/", async(req,res)=>{
-  try{
-    atauser=["Hoa","Nhung"];
- 
-    var dataUserA=[]
-      await db.query('SELECT TOP 10 UserName,FullName FROM dbo.ListUser',{
-    }).then(results => {
-      dataUserA=results[0];
-      // console.log(list_cat);
-    })
-    // req.app.locals._userName='TuyetNhung';
-  //  console.log(req.app.locals._userName);
-  //  req.app.locals._treelistHtml=html;
-  //  console.log(req.app.locals._treelistHtml);
-    // console.log (html);
-    res.render('home',{
-      title: 'Express' ,
-      thaihoa:req.app.locals._userName,
-      datauser:dataUserA,
-      // list_cat:list_cat,
-      html:req.app.locals._treelistHtml
-    })
-  }catch (error) {
-    res.json({
-        result:"failed",
-        data:{},
-        message:`Query Failed.Error: ${error}`
-  });
+// router.post('/', async ( req, res ) => {
+//   try {
+//     var file = req.files.filename;
+//     var filename=file.name;
+// var ho='';
+//   file.mv('./public/excel/'+filename,(err) =>{
+//     if(err){
+//       res.send('error');
+
+//     } else {
+//       var arrExcelInput=[];
+//       var result=importExcel({
+//         sourceFile:'./public/excel/'+filename,
+//         header:{rows:1},
+//         columnToKey:{A:'Ho', B:'Ten', C:'NamSinh'},
+//         sheets:['Sheet1']
+//       });
+
+//       for( var i = 0; i <result.Sheet1.length; i++){
+//         db.query(`wacoal_insert_test_v1 @Ho=:Ho, @Ten=:Ten , @NamSinh=''`,{
+//                 replacements: {Ho: result.Sheet1[i].Ho, Ten: result.Sheet1[i].Ho}
+//               }).then(result=>{
+//                 arrErr=result[0];
+//               })
+//             }
+//             res.send(arrErr);
+      
+//         // arrExcelInput.push(result.Sheet1[i].Ho);
+
+//       }
+//       // res.send(arrExcelInput);
+//       // console.log(arrExcelInput + 'data' + arrExcelInput.length);
+//       // res.send(result);
+//       console.log(result);
+//       // res.send('file ' + filename + ' san sang upload');
+//     });
+//   res.send('ok');
+    
+//   } catch (error) {
+//     console.log(error);
+//   }
+  
+
+// });
+const posts=[];
+const arrErr=[];
+
+router.post('/', async(req,res) =>{
+try {
+
+  var file = req.files.filename;
+  var filename=file.name;
+  file.mv('./public/excel/'+filename,(err) =>{
+  if(err){
+    res.send('error');
+  } else {
+    const workbook=xlsx.readFile('./public/excel/'+filename);
+    const worksheet= workbook.Sheets[workbook.SheetNames[0]];
+    let post={};
+    for(let cell in worksheet){
+      const cellAsString = cell.toString();
+      if(cellAsString[1]!=='r' && cellAsString !== 'm'  && cellAsString[1]>1){
+        if(cellAsString[0]==='A'){
+          post.ho=worksheet[cell].v;
+        }
+        if(cellAsString[0]==='B'){
+          post.ten=worksheet[cell].v;
+        }
+        if(cellAsString[0]==='C'){
+          post.ngaysinh=worksheet[cell].v;
+          posts.push(post);
+          post = {};
+        }
+      
+      }
+    }
   }
-  });
-
-
-  router.get("/1", async(req,res) =>{
-    html="";
-    html=`<ul class="nav side-menu" id="side-menu">`;
-    await db.query('sp_Wacoal_LoadMenuWeb_V1 13,101',{
-      // replacement
-    }).then(result => {
-      arr=result[0];
-      // console.log(arr);
-      list_cat=data_Tree(arr,"0");
-      html+=`</ul>`
-      // console.log(list_cat);
-      console.log(html);
-      req.app.locals._treelistHtml=html;
-    });
-
-    var dataUserA=[]
-    await db.query('SELECT TOP 10 UserName,FullName FROM dbo.ListUser',{
-  }).then(results => {
-    dataUserA=results[0];
-    // console.log(list_cat);
-  })
-    req.app.locals._userName='TuyetNhung';
-    res.render('home',{
-      title:'Express',
-      thaihoa:req.app.locals._userName,
-      datauser:dataUserA,
-      html:req.app.locals._treelistHtml
+  // console.log(worksheet);
+  console.log(posts);
+  for (var i = 0 ; i <posts.length; i++){
+     db.query(`wacoal_insert_test_v1 @Ho=:Ho, @Ten=:Ten , @NamSinh=''`,{
+      replacements: {Ho: posts[i].ho, Ten:posts[i].ten}
+    }).then(result=>{
+      arrErr=result[0];
     })
-  })
+  }
+  res.send(arrErr);
+});
+} catch (error) {
+  
+}
+
+});
+
 
 
 module.exports = router;

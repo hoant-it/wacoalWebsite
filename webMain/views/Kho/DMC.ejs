@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../block/head %>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/admin/userList.css">
+</head>
+
+<body class="nav-md footer_fixed">
+    <form action="/home/kho/DMC" method="POST">
+    <div class="container body">
+        <div class="main_container">
+            <% include ../block/leftpanelV2 %>
+                <% include ../block/toppanelV2 %>
+               
+                    <!-- page content -->
+                    <div class="right_col " role="main" style="min-height: 100vh">
+                            <div class="page-title">
+                                <div class="title_left">
+                                    <h3> <small><strong></strong></small></h3>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>DM Search <small></small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br>
+                                             <form class="form-label-left input_mask">
+                                              <!-- hang tren --> 
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Mã Hàng <span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <select class="form-control" name="selectMH">
+                                                      <option name="BCL118" value="BCL118"> BCL118</option>
+                                                      <option> BCL729</option>
+                                                      <option> BRB464</option>
+                                                    </select>
+                                                  </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Màu <span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <select class="form-control">
+                                                        <option> BE </option>
+                                                        <option> KO</option>
+                                                        <option> RP</option>
+                                                      </select>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 ">
+                                                    <button type="submit" name="bsubmit" value="submitSearch" class="btn btn-primary" id="btnSaveId">Search</button>
+                                                </div>
+                                                 <!-- hang tren --> 
+                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>DM Design <small></small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br>
+                                             <form class="form-label-left input_mask">
+                                              <!-- hang 1 --> 
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Công Đoạn <span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <select class="form-control">
+                                                      <option value="0"> 1 </option>
+                                                      <option> 2 </option>
+                                                      <option> 3 </option>
+                                                      <option> 4 </option>
+                                                      <option> 5 </option>
+                                                    </select>
+                                                  </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Loại Máy <span class="required">*</span></label>
+                                                <div class="col-md-2 col-sm-2 ">
+                                                    <select class="form-control">
+                                                        <option> </option>
+                                                      <% if( arrMachine ){ %>
+                                                          <%  for ( var i = 0 ;  i < arrMachine.length ; i ++) { %>
+                                                              <option value="<%-arrMachine[i].CODE %>"> <%=arrMachine[i].MACHINENAME_VN %></option> 
+                                                          <%  } %>
+  
+                                                      <%  } else { %>
+                                                          <option> </option>
+                                                      <%  } %>
+                                                      </select>
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Loại Mũi<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <select class="form-control loaimui">
+                                                        <option value=""> </option>
+                                                        <option value="C"> C </option>
+                                                      </select>
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align "   for="first-name">Độ dày/Mỏng<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " >
+                                                        <select class="form-control">
+                                                            <option>  </option>
+                                                            <option> D </option>
+                                                            <option> M </option>
+                                                        </select>
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align "   for="first-name">Biên Độ<span class="required">*</span></label>
+                                               
+                                                <div class="col-md-2 col-sm-2 " >
+                                                        <select class="form-control Biendo">
+                                                            <option value=""> 0 </option>
+                                                            <option value=""> 8 </option>
+                                                            <option value=""> 10 </option>
+                                                        </select>
+                                                </div>
+                                               
+                                                 <!-- hang 1 --> 
+
+                                                 <!-- hang 2 --> 
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Mật Độ<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " >
+                                                    <select class="form-control MatDo">
+                                                        <option value="">  </option>
+                                                        <option value="1.21"> 8 </option>
+                                                        <option value="1.25"> 10 </option>
+                                                    </select>
+                                                </div>
+                                              
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Chiểu dài CĐ (mm)<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " style="margin-top: 5px;">
+                                                    <input type="text" id="cdcdid" name="cdcdname" required="required" class="form-control cdcd">
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Loại Chỉ Trên<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " style="margin-top: 5px;">
+                                                    <select class="form-control Biendo">
+                                                        <option value=""> GOMU </option>
+                                                        <option value=""> K60 </option>
+                                                        <option value=""> K80 </option>
+                                                    </select>
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Số mét/pcs<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " style="margin-top: 5px;">
+                                                    <input type="text" id="smctId" name="last-name" required="required" class="form-control">
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Loại Chỉ Dưới<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " style="margin-top: 5px;">
+                                                    <select class="form-control Biendo">
+                                                        <option value=""> GOMU </option>
+                                                        <option value=""> K60 </option>
+                                                        <option value=""> K80 </option>
+                                                    </select>
+                                                </div>
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align " style="margin-top: 5px;"  for="first-name">Số mét/pcs<span class="required">*</span></label>
+                                                <div class="col-md-1 col-sm-1 " style="margin-top: 5px;">
+                                                    <input type="text" id="smcdId" name="smcd" required="required" class="form-control">
+                                                </div>
+                                                <!-- hang 2 --> 
+
+                                                <!--hang 3-->
+                                            
+                                                <!--hang 3-->
+                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="x_panel">
+                                          <div class="x_title">
+                                              <h2>DM List</h2>
+                                              <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                                              </ul>
+                                              <div class="clearfix"></div>
+                                          </div>
+                                          <div class="x_content" id="xcontentid">
+                                            <table class="table table-striped table-bordered mydatatable" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Công Đoạn </th>
+                                                        <th>Loại Máy</th>
+                                                        <th>Loại Mũi</th>
+                                                        <th>Độ dày/mỏng</th>
+                                                        <th>Biên Độ</th>
+                                                        <th>Mật Độ</th>
+                                                        <th>Chiều Dài Công Đoạn (mm)</th>
+                                                        <th>Loại Chỉ (Trên)</th>
+                                                        <th>Loại Chỉ (Dưới)</th>
+                                                        <th>số mét/1pcs</th>
+                                                    </tr>
+            
+                                                </thead>
+                                                <tbody>
+                                                    <% if ( arrUserList) { %>
+                                                      <% for( var i =0 ; i < arrUserList.length ; i++) { %>
+                                                            <tr>
+                                                                <td> <%=arrUserList[i].UserName %></td>  
+                                                                <td> <%=arrUserList[i].FullName %> </td>  
+                                                                <td> <%=arrUserList[i].Email %> </td>  
+                                                                <td> <%=arrUserList[i].PositionsName %> </td> 
+                                                                <td> <%=arrUserList[i].DepartmentCode %> </td> 
+                                                            </tr>
+                                                       <% } %>
+                                                 <%   } else { %>
+                                                    <tr>
+                                                          <td> Empty </td>  
+                                                          <td> Empty </td>  
+                                                          <td> Empty </td>  
+                                                          <td> Empty </td> 
+                                                          <td> Empty </td>  
+                                                          <td> Empty </td> 
+                                                          <td> Empty </td> 
+                                                          <td> Empty </td> 
+                                                          <td> Empty </td> 
+                                                          <td> Empty </td> 
+                                                    </tr>
+                                                <% } %>
+                                                </tbody>
+                                              
+                                            </table>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            
+                    </div>
+                    <!-- /page content -->
+
+                    <!-- footer content -->
+                    <footer>
+                        <div class="pull-right">
+                            Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
+                
+        </div>
+    </div>
+    <% include ../block/script %>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/javascripts/admin/userList.js"></script>
+    <script>
+        var hsqd;
+        var loaimui=0;
+        var matdo=0
+        $(document).ready(function(){
+            $("select.MatDo").change(function(){
+                //get value select option
+                var selectedCountry = $(this).children("option:selected").val();
+                //get name value option
+                var selectedCountry1 = $(this).children('option:selected').text();
+                hsqd=selectedCountry;
+                matdo=selectedCountry1;
+                alert("You have selected the country - " + selectedCountry1);
+            });
+
+            $("select.loaimui").change(function(){
+                var selectloaiMui = $(this).children("option:selected").val();
+                // alert("You have selected the country - " + selectloaiMui);
+               if(selectloaiMui==='C'){
+                loaimui=12*25.4;
+                alert("You have selected the country - " + loaimui);
+               }
+               else
+               {
+                loaimui= 0;
+               }
+                // alert("You have selected the country - " + selectedCountry);
+            });
+
+            $(".cdcd").change(function(){
+                var value=$(this).val();
+                var c = parseFloat((parseFloat(value) +(parseFloat(loaimui)/matdo)) * parseFloat(hsqd) * 1.07 / 1000).toFixed(2); ;
+                document.getElementById("smctId").value=c.toString();
+                document.getElementById("smcdId").value=c.toString();
+            });
+
+        });
+        </script>
+    </form>
+</body>
+
+</html>
