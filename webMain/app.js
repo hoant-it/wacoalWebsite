@@ -14,13 +14,24 @@ var indexRouter = require('./routes/index');
 var homeRouter=require('./routes/home/home');
 var testRouter=require('./routes/test/test');
 var loginRouter=require('./routes/login');
+var logoutRouter= require('./routes/logout');
+//kho
 var KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
 var KhoQTRouter=require('./routes/Kho/KhoQT');
 var KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
+const KhoDMC_Router=require('./routes/Kho/KhoDMC');
+//VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
-var logoutRouter= require('./routes/logout');
+//admin
 const userListRouter=require('./routes/admin/userList');
-const KhoDMC_Router=require('./routes/Kho/KhoDMC')
+//Cat
+const CatSDTC_Router=require('./routes/Cat/CatSDTC');
+const CatTDLCard_Router=require('./routes/Cat/CatTDLCard');
+const CatLLKH_Router=require('./routes/Cat/CatLLKHCard');
+const CatMasterPattern_Router=require('./routes/Cat/CatMasterPattern');
+const CatGKT_Router=require('./routes/Cat/CatGKT');
+//May
+const MayQTSX_Router=require('./routes/May/MayQTSX');
 // const IN_PROD= node
 
 var app = express();
@@ -65,6 +76,17 @@ app.use('/home/VNWC/VNWC_SDTC',VNWCSDTCCRouter);
 app.use('/logout',logoutRouter);
 app.use('/userList',userListRouter);
 app.use('/home/kho/DMC',KhoDMC_Router)
+app.use('/Cat/SDTC',CatSDTC_Router);
+app.use('/Cat/TDLCard',CatTDLCard_Router);
+app.use('/Cat/LLKHCard',CatLLKH_Router);
+app.use('/Cat/CatMasterPattern',CatMasterPattern_Router);
+app.use('/Cat/GKT',CatGKT_Router);
+//may
+app.use('/May/QTSX',MayQTSX_Router);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

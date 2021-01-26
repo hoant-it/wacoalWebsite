@@ -11,51 +11,7 @@ res.render('test',{
   html:''
 })
 });
-
-// router.post('/', async ( req, res ) => {
-//   try {
-//     var file = req.files.filename;
-//     var filename=file.name;
-// var ho='';
-//   file.mv('./public/excel/'+filename,(err) =>{
-//     if(err){
-//       res.send('error');
-
-//     } else {
-//       var arrExcelInput=[];
-//       var result=importExcel({
-//         sourceFile:'./public/excel/'+filename,
-//         header:{rows:1},
-//         columnToKey:{A:'Ho', B:'Ten', C:'NamSinh'},
-//         sheets:['Sheet1']
-//       });
-
-//       for( var i = 0; i <result.Sheet1.length; i++){
-//         db.query(`wacoal_insert_test_v1 @Ho=:Ho, @Ten=:Ten , @NamSinh=''`,{
-//                 replacements: {Ho: result.Sheet1[i].Ho, Ten: result.Sheet1[i].Ho}
-//               }).then(result=>{
-//                 arrErr=result[0];
-//               })
-//             }
-//             res.send(arrErr);
-      
-//         // arrExcelInput.push(result.Sheet1[i].Ho);
-
-//       }
-//       // res.send(arrExcelInput);
-//       // console.log(arrExcelInput + 'data' + arrExcelInput.length);
-//       // res.send(result);
-//       console.log(result);
-//       // res.send('file ' + filename + ' san sang upload');
-//     });
-//   res.send('ok');
-    
-//   } catch (error) {
-//     console.log(error);
-//   }
-  
-
-// });
+// import excel file vao he thong
 const posts=[];
 const arrErr=[];
 
