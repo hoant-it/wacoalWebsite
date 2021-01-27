@@ -6,10 +6,12 @@
     "start": "nodemon ./bin/www --exec babel-node"
   },
   "dependencies": {
+    "alert": "^5.0.10",
     "convert-excel-to-json": "^1.7.0",
     "cookie-parser": "~1.4.4",
     "crypto-js": "^4.0.0",
     "debug": "~2.6.9",
+    "del": "^6.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-fileupload": "^1.2.1",

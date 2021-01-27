@@ -20,6 +20,8 @@ var KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
 var KhoQTRouter=require('./routes/Kho/KhoQT');
 var KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
 const KhoDMC_Router=require('./routes/Kho/KhoDMC');
+const Kho_QTQLNVL_Router=require('./routes/Kho/Kho_QTQLNVL');
+const KhoQTDatChi_Router=require('./routes/Kho/KhoQTDatChi');
 //VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
 //admin
@@ -32,6 +34,9 @@ const CatMasterPattern_Router=require('./routes/Cat/CatMasterPattern');
 const CatGKT_Router=require('./routes/Cat/CatGKT');
 //May
 const MayQTSX_Router=require('./routes/May/MayQTSX');
+//San Xuat
+const SanXuatQTSX_Router= require('./routes/SanXuat/SXQTSX');
+
 // const IN_PROD= node
 
 var app = express();
@@ -83,6 +88,11 @@ app.use('/Cat/CatMasterPattern',CatMasterPattern_Router);
 app.use('/Cat/GKT',CatGKT_Router);
 //may
 app.use('/May/QTSX',MayQTSX_Router);
+//kho
+app.use('/Kho/QTQLNVL',Kho_QTQLNVL_Router);
+app.use('/kho/QTDC',KhoQTDatChi_Router);
+//San Xuat
+app.use('/SX/QTSX',SanXuatQTSX_Router);
 
 
 

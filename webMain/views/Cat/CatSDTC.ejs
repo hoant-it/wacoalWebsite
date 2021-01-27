@@ -22,10 +22,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                <img src="/images/cat/SDTCCatImage.png" width="100%" height="600px" alt="Planets" usemap="#planetmap" >
-                                <map name="planetmap" id="planetmap">
-                                    <area shape="rect" coords="0,260,150,150" href="/huyorder" alt="huyOrder">
-                                    <area shape="rect" coords="0,470,150,540" href="/Cat/LLKHCard" alt="LLKHCard">
+                                <img id="img_ID" src="/images/cat/SDTCCatImage.png" width="100%" height="600px" alt="Planets" usemap="#map" >
+                                <map id="map_ID" name="map">
+                                    <area shape="rect" coords="260,260,430,310" href="/huyorder" alt="huyOrder">
+                                    <area shape="rect" coords="0,560,150,630" href="/Cat/LLKHCard" alt="LLKHCard">
                                     <area shape="rect" coords="200,470,340,540" href="/Cat/TDLCard" alt="TDLCard">
                                     <area shape="rect" coords="400,430,540,570" href="/Cat/CatMasterPattern" alt="CatMasterPattern">
                                     <area shape="rect" coords="600,470,740,540" href="/Cat/GKT" alt="GKT">
@@ -53,6 +53,13 @@
     
     <% include ../block/script %>
 </body>
+<script type="text/javascript" src="/js/imageMapResizer.min.js"></script>
+<script type="text/javascript">
+
+    $('map').imageMapResize();
+
+</script>
+
 <script src="/javascripts/cat/CatSDTC.js"></script>
 
 <script language="JavaScript">
@@ -60,10 +67,14 @@
     document.onmousemove=mouseMove;
     function mouseMove(e){
     var str;
+    // str=screen.width;
     if (firefox) str="x="+e.clientX+", y="+e.clientY;
     else str="x="+event.clientX+", y="+event.clientY;
+
     document.title=str;
     }
     </script>
+
+
 
 </html>
