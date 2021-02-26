@@ -71,7 +71,7 @@ const sequelize=new Sequelize(
     {
         dialect:'mssql',
         host:'192.168.79.125',
-        operatorsAliases:false,
+        operatorsAliases:0,
         dialectOptions:{
             options:{
                 validateBulkLoadParameters: true,

@@ -4,33 +4,39 @@ const db= require('../databases/database').sequelize;
 var CryptoJS = require("crypto-js");
 var milderedirectHome= require('../middlewares/middle.redirectHome').redirectHome;
 
-result=[];
-function data_Tree(arr,parent_id="MN00039", level=0){
-arr.forEach(element => {
-  if(element["parent_id"]=== parent_id){
-    element["level"]=level;
-    if(element["href"]===""){
-      html+=`<li><a></i> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
-      html+=`<ul class="nav child_menu">`;
-    result.push(element);
-    child=data_Tree(arr,element["id"],level + 1);
-      result.concat(child);
-      html+=`</ul>`
-    html+=`</li>`
-    }
-    else{
-      html+=`<li class=""><a href="${element["href"]}"> ${element["title"]}</a>`;
-    result.push(element);
-    child=data_Tree(arr,element["id"],level + 1);
-      result.concat(child);
-    html+=`</li>`
-    }
-  }
-});
-return result;
-}
+// result=[];
 
-
+// function data_Tree(arr,parent_id="0", level=0){
+// arr.forEach(element => {
+//   if(element["parent_id"]=== parent_id){
+//     element["level"]=level;
+//     if(element["href"]===""){
+//       if(level===0){
+//         html+=`<li class="active"><a> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
+//         html+=`<ul class="nav child_menu">`;
+//       }
+//       else {
+//         html+=`<li><a> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
+//         html+=`<ul class="nav child_menu">`;
+//       }
+   
+//     result.push(element);
+//     child=data_Tree(arr,element["id"],level + 1);
+//       result.concat(child);
+//       html+=`</ul>`
+//     html+=`</li>`
+//     }
+//     else{
+//       html+=`<li><a href="${element["href"]}"> ${element["title"]}</a>`;
+//     result.push(element);
+//     child=data_Tree(arr,element["id"],level + 1);
+//       result.concat(child);
+//     html+=`</li>`
+//     }
+//   }
+// });
+// return result;
+// }
 
 router.get('/',milderedirectHome, async(req,res) =>{
   res.render('login',{
@@ -40,6 +46,7 @@ router.get('/',milderedirectHome, async(req,res) =>{
 });
 
 router.post('/',milderedirectHome,async(req,res) =>{
+  // var localdata = localStorage.getItem('my_key'); 
   const{userName,password}= req.body
   var dataUserA=[]
   await db.query('sp_Wacoal_Web_ListUserGetRole @UserName=:UserName',{
@@ -61,22 +68,31 @@ router.post('/',milderedirectHome,async(req,res) =>{
       res.cookie('userId',userName,{
         signed:true
       })
+      res.cookie('IDAuthorization',dataUserA[0].IDAuthorization,{
+        signed:true
+      })
+      res.cookie('UserInGroupID',dataUserA[0].UserInGroupID,{
+        signed:true
+      })
 
-      html="";
-      html=`<ul class="nav side-menu" id="side-menu">`;
-      await db.query('sp_Wacoal_LoadMenuWeb_V1 @IDAuthorization=:IDAuthorization,@UserInGroupID=:UserInGroupID',{
-        replacements: { IDAuthorization: dataUserA[0].IDAuthorization, UserInGroupID:dataUserA[0].UserInGroupID},
-      }).then(result => {
-        arr=result[0];
-        // console.log(arr);
-        list_cat=data_Tree(arr,"MN00039");
-        html+=`</ul>`
-      });
+      // html="";
+      // html=`<ul class="nav side-menu" id="side-menu">`;
+      // await db.query('sp_Wacoal_LoadMenuWeb_V1 @IDAuthorization=:IDAuthorization,@UserInGroupID=:UserInGroupID',{
+      //   replacements: { IDAuthorization: dataUserA[0].IDAuthorization, UserInGroupID:dataUserA[0].UserInGroupID},
+      // }).then(result => {
+      //   arr=result[0];
+      //   // console.log(arr);
+      //   list_cat=data_Tree(arr,"0");
+      //   html+=`</ul>`
+      // });
 
-      console.log(html)
-      res.cookie('html',html,{
-       signed:true
-     })
+      // console.log(html)
+      // localStorage.setItem('my_key',html);
+      // localStorage.setItem('html',html);
+      // sessionStorage.setItem('html',html)
+    //   res.cookie('html',html,{
+    //    signed:true
+    //  })
 
       res.redirect('/home')
     }

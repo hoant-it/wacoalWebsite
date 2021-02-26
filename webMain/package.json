@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www --exec babel-node"
+    "start": "nodemon --inspect ./bin/www --exec babel-node"
   },
   "dependencies": {
     "alert": "^5.0.10",
@@ -19,6 +19,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mssql": "^6.3.0",
+    "popups": "^1.1.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
     "webpack": "^5.11.0",

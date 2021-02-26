@@ -8,7 +8,7 @@ router.get('/', async(req,res) =>{
 res.render('May/MayQTSX',{
     title:'Express',
     userId:req.signedCookies.userId,
-   html:req.signedCookies.html
+   html:'',
 })
 })
 

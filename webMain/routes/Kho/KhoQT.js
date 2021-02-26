@@ -7,7 +7,7 @@ router.get('/', async(req,res) =>{
     res.render('kho/QTKho',{
         title:'Express',
         userId:req.signedCookies.userId,
-        html:req.signedCookies.html
+        html:'',
     })
 })
 

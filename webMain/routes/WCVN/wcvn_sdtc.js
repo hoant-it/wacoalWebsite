@@ -7,7 +7,7 @@ router.get('/', async(req,res) =>{
 res.render('WCVN/WCVN_SDTC',{
     title: 'Express' ,
     userId:req.signedCookies.userId,
-    html:req.signedCookies.html
+    html:''
 })
 })
 

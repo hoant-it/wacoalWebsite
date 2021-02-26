@@ -8,7 +8,7 @@ router.get('/', async(req,res) =>{
 res.render('Kho/Kho_QTQLNVL',{
     title:'Express',
     userId:req.signedCookies.userId,
-   html:req.signedCookies.html
+   html:''
 })
 })
 

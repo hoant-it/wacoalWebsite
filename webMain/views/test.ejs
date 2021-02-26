@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,46 +7,62 @@
 </head>
 
 <body class="nav-md footer_fixed">
-        <form action="/test" method="POST" enctype="multipart/form-data">
-        <div class="container body">
-            <div class="main_container">
-                <% include ./block/leftpanelV2 %>
-                <% include ./block/toppanelV2 %>
-                <!-- page content -->
-                <div class="right_col " role="main" style="min-height: 100vh">
+    <div class="container body">
+        <div class="main_container">
+            <% include ./block/leftpanelV2 %>
+            <% include ./block/toppanelV2 %>
+            <!-- page content -->
+            <div class="right_col " role="main" style="min-height: 100vh">
+               
                     <div class="">
                         <div class="page-title">
                             <div class="title_left">
-                                <h3>Import data to excel <small><strong></strong></small></h3>
+                                <h3> <small><strong></strong></small></h3>
                                 
                             </div>
                         </div>
-
-                        <input type="file" name="filename">
-                        <button type="submit"> import excel </button>
-                <%    if (message) { %>
-                        <h2> <%=message%></h2>
-                <%    }  %>
-                
-                
-                
-                    
-                </div>
-                <!-- /page content -->
-
-                <!-- footer content -->
-                <footer>
-                    <div class="pull-right">
-                        Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
                     </div>
-                    <div class="clearfix"></div>
-                </footer>
-                <!-- /footer content -->
-            </div>
-        </div>
 
-    <% include ./block/script %>
-    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <button id="btn-add-tab" type="button" class="btn btn-primary pull-right">Add Tab</button>
+                                </p>
+                                <!-- Nav tabs -->
+                                <ul id="tab-list" class="nav nav-tabs" role="tablist">
+                                    <li class="active">
+                                        <a href="#home" role="tab" data-toggle="tab">
+                                        <span>Tab 1 </span>
+                                        <span class="glyphicon glyphicon-pencil text-muted edit"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                    
+                                <!-- Tab panes -->
+                                <div id="tab-content" class="tab-content">
+                                    <div class="tab-pane fade in active" id="home">Tab 1 content</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                
+            </div>
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+  <% include ./block/script %>
+  <script src="/javascripts/test.js"></script>
 </body>
 
 </html>

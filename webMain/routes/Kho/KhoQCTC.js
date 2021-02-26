@@ -32,7 +32,7 @@ router.get('/', async(req,res) =>{
 res.render('kho/QCTC',{
     title:'Express',
     userId:req.signedCookies.userId,
-    html:req.signedCookies.html,
+    html:'',
     arrOrder:arrOrder,
     arrNamSelect:arrNamSelect,
     selectNam:_selectNam,

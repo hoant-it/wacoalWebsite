@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./block/head %>
+</head>
+
+<script>
+    alert("aaa");
+</script>
+<body class="nav-md footer_fixed">
+
+    <div class="container body">
+        <div class="main_container">
+            <% include ./block/leftpanelV2 %>
+                <% include ./block/toppanelV2 %>
+
+                    <div class="right_col " role="main" style="min-height: 100vh">
+                        <!-- page content -->
+                        <div class="">
+                            <div class="page-title">
+                                <div class="title_left">
+                                    <h3> <small><strong></strong></small></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+                        <form class="form-horizontal"  method="POST">
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="bsumit" value="bsumitSave" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                        <!-- /page content -->
+
+                        <!-- footer content -->
+                        <footer>
+                            <div class="pull-right">
+                                Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </footer>
+                        <!-- /footer content -->
+                    </div>
+        </div>
+
+        <% include ./block/script %>
+
+            <script>
+                $('#exampleModal').on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var recipient = button.data('whatever') // Extract info from data-* attributes
+                        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient)
+                    modal.find('.modal-body input').val(recipient)
+                })
+            </script>
+
+    
+
+            <script>
+                $('.form-horizontal').submit(function() {
+                // do an AJAX get request for the page that's showing your parameter
+                $.post("/test"), function (data) {
+                    console.log(data);
+                    // set the modal's body to what the get request is returning
+                    $('#exampleModal .modal-body').html("aaa " + data);
+                  
+                    // show it
+                    // $('#exampleModal').modal('show');
+                }
+
+                // don't submit the form as normal, otherwise the user will be redirected
+                return false;
+                });
+            </script>
+
+
+</body>
+
+</html>

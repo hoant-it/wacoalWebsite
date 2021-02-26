@@ -43,9 +43,15 @@
                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
                     <form id="form1" action="/logout" method="POST"> 
-                        <a data-toggle="tooltip" data-placement="top" title="" href="javascript:;" onclick="document.getElementById('form1').submit();" data-original-title="Logout">
+                        <a data-toggle="tooltip" data-placement="top" title="" href="javascript:;" onclick="logout()" data-original-title="Logout">
                           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
+                        <script>
+                            function logout(){
+                                localStorage.clear();
+                                document.getElementById('form1').submit();  
+                            }
+                        </script>
                     </form>
                 </div>
                 <!-- /menu footer buttons -->

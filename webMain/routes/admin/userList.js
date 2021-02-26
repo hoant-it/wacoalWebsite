@@ -15,7 +15,7 @@ await db.query("wacoal_GetUserList_Web_V1",{
   res.render("admin/userList", {
     title:'Express',
     userId:req.signedCookies.userId,
-    html:req.signedCookies.html,
+    html:'',
     arrUserList:arrUserList
   });
 

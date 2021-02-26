@@ -14,7 +14,7 @@ router.get('/', async(req,res) =>{
 res.render('kho/DMC',{
     title:'Express',
     userId:req.signedCookies.userId,
-    html:req.signedCookies.html,
+    html:'',
     arrUserList:null,
     arrMachine:arrMachine
 })

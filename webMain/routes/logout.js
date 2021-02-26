@@ -6,7 +6,8 @@ var router = express.Router();
 
 router.post('/', (req, res ) => {
     res.clearCookie("userId");
-    res.clearCookie("html");
+    res.clearCookie("IDAuthorization");
+    res.clearCookie("UserInGroupID");
     res.redirect('/login');
 })
 
