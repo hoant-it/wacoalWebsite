@@ -92,14 +92,32 @@
                                             <table class="table table-striped table-bordered mydatatable" style="width: 100%;">
                                                 <thead>
                                                     <tr>
-                                                        <!-- <th>A</th>
-                                                        <th>B </th>
-                                                        <th>C</th>
-                                                        <th>D</th> -->
-                                                        <th>ORDER NO </th>
-                                                        <th>Loại Chỉ </th>
-                                                        <th>Màu Chỉ </th>
-                                                        <th>Số Lượng Chỉ Đặt (Mét)</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">R60</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">WA</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">WB</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">W300</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">S80</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">K60</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">GOMU</th>
+                                                        <th colspan="2" style="text-align: center; vertical-align: middle;">K80</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
+                                                        <th>COLOR</th>
+                                                        <th>QTY</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -107,21 +125,70 @@
                                                         <% for( var i=0 ; i < arrOrder.length ; i++) { %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=arrOrder[i].ORDERNO %>
+                                                                    <%=arrOrder[i].COLOR_R60 %>
                                                                 </td>
                                                                 <td>
-                                                                    <%=arrOrder[i].LOAICHI %>
+                                                                    <%=arrOrder[i].SL_R60 %>
                                                                 </td>
                                                                 <td>
-                                                                    <%=arrOrder[i].MAUCHI %>
+                                                                    <%=arrOrder[i].COLOR_WA %>
                                                                 </td>
                                                                 <td>
-                                                                    <%=arrOrder[i].SLCHI %>
+                                                                    <%=arrOrder[i].SL_WA %>
                                                                 </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_WB %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_WB %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_W300 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_W300 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_S80 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_S80 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_K60 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_K60 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_GOMU %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_GOMU %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].COLOR_K80 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=arrOrder[i].SL_K80 %>
+                                                                </td>
+                                                             
                                                             </tr>
                                                             <% } %>
                                                                 <% } else { %>
                                                                     <tr>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
+                                                                        <td> Empty </td>
                                                                         <td> Empty </td>
                                                                         <td> Empty </td>
                                                                         <td> Empty </td>

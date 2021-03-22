@@ -44,8 +44,10 @@
                                                         <th>Name </th>
                                                         <th>Full Name</th>
                                                         <th>Email</th>
+                                                        <th>PositionsCode</th>
                                                         <th>PositionsName</th>
                                                         <th>DepartmentCode</th>
+                                                        <th>Role</th>
                                                     </tr>
 
                                                 </thead>
@@ -63,15 +65,22 @@
                                                                     <%=arrUserList[i].Email %>
                                                                 </td>
                                                                 <td>
+                                                                    <%=arrUserList[i].PositionsCode %>
+                                                                </td>
+                                                                <td>
                                                                     <%=arrUserList[i].PositionsName %>
                                                                 </td>
                                                                 <td>
                                                                     <%=arrUserList[i].DepartmentCode %>
                                                                 </td>
+                                                                <td>
+                                                                    <%=arrUserList[i].GroupUserDescription %>
+                                                                </td>
                                                             </tr>
                                                             <% } %>
                                                                 <% } else { %>
                                                                     <tr>
+                                                                        <td> Empty </td>
                                                                         <td> Empty </td>
                                                                         <td> Empty </td>
                                                                         <td> Empty </td>
@@ -114,12 +123,28 @@
                                                 <input type="text" class="form-control" name="txtEmail" id="txtEmail">
                                             </div>
                                             <div class="form-group">
+                                 
                                                 <label for="txtPositionsName"> Positions Name:</label>
-                                                <input type="text" class="form-control" name="txtPositionsName" id="txtPositionsName">
+                                                <select id="selectionPosition" class="form-control" >
+                                                 <%   if(arrListPositions.length>0) { %>
+                                                     <%   for( var i = 0; i < arrListPositions.length; i++) { %>
+                                                            <option value="<%-arrListPositions[i].PositionsCode%>"><%=arrListPositions[i].PositionsName%></option>
+
+                                                     <%   } %>
+                                                 <%   } %>
+                                                  </select>
+                                                <!-- <input type="text" class="form-control" name="txtPositionsName" id="txtPositionsName"> -->
                                             </div>
                                             <div class="form-group">
                                                 <label for="txtDepartmentCode"> Department Code:</label>
-                                                <input type="text" class="form-control" name='txtDepartmentCode' id="txtDepartmentCode">
+                                                <select id="selectionDeparment" class="form-control" >
+                                                    <%   if(arrListDepartment.length>0) { %>
+                                                        <%   for( var i = 0; i < arrListDepartment.length; i++) { %>
+                                                               <option value="<%-arrListDepartment[i].DepartmentCode%>"><%=arrListDepartment[i].DepartmentName%></option>
+   
+                                                        <%   } %>
+                                                    <%   } %>
+                                                     </select>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" name="submitInsert" value="submitInsert" class="btn btn-primary" id="btnSave">Save</button>
@@ -130,12 +155,10 @@
                                             </div> -->
 
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
-
+                            <!-- modal -->
                         </div>
                         <!-- /page content -->
 
@@ -147,7 +170,7 @@
                                         <li style="padding-right: 15px; float: right; margin-top: 20px;">
                                             <button type="button" class="btn btn-success" id="btnAddNew">New</button>
                                             <button type="button" class="btn btn-info" id="btnedit">Edit</button>
-                                            <button type="submit" name="bsubmit" class="btn btn-danger" id="btnDeleteId">Delete</button>
+                                            <button type="submit" name="bsubmit" value="submitDelete" class="btn btn-danger" id="btnDeleteId">Delete</button>
                                             <!-- <button type="submit" name="bsubmit" value="submitSave" class="btn btn-primary" id="btnSaveId">Save</button>
                                         <button type="button" onclick="cancelUser()" name="bsubmit" value="submitCancel" class="btn btn-secondary" id="btnCancelId">Cancel</button> -->
                                         </li>

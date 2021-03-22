@@ -53,12 +53,10 @@
     if(test!==''){
         localStorage.setItem('html',test)
     }
+    // console.log(' test ' + localStorage.getItem('html'));
     document.querySelector('#menu_section').innerHTML=localStorage.getItem('html');
    //  console.log("test"+ test);
     // document.querySelector("#menu_section").innerHTML= test;
-    
-
-
 
     $(document).ready(function() {
         /* Para que el panel blanco area de contenido ocupe todo el contenedor */

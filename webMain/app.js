@@ -15,6 +15,9 @@ var homeRouter=require('./routes/home/home');
 var testRouter=require('./routes/test/test');
 var loginRouter=require('./routes/login');
 var logoutRouter= require('./routes/logout');
+var changePasswordRouter= require('./routes/changePassword');
+
+
 //kho
 var KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
 var KhoQTRouter=require('./routes/Kho/KhoQT');
@@ -38,8 +41,11 @@ const KhoOrderTinhChiV2_Router=require('./routes/Kho/KhoOrderTinhChiV2');
 //VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
 //admin
-const userListRouter=require('./routes/admin/userList');
 const userListRouter2=require('./routes/admin/userListV2');
+const listMenuRouter=require('./routes/admin/ListMenu');
+const menuPermissionRouter= require('./routes/admin/menuPermission');
+const RolePermissionRouter=require('./routes/admin/RolePermission');
+const ListDeparmentRouter=require('./routes/admin/ListDeparment');
 //Cat
 const CatSDTC_Router=require('./routes/Cat/CatSDTC');
 const CatTDLCard_Router=require('./routes/Cat/CatTDLCard');
@@ -50,6 +56,8 @@ const CatGKT_Router=require('./routes/Cat/CatGKT');
 const MayQTSX_Router=require('./routes/May/MayQTSX');
 //San Xuat
 const SanXuatQTSX_Router= require('./routes/SanXuat/SXQTSX');
+//api
+const apiData_Router= require('./routes/api/api');
 
 // const IN_PROD= node
 
@@ -89,6 +97,9 @@ app.use('/', indexRouter);
 app.use('/home',homeRouter);
 app.use('/test',testRouter)
 app.use('/login',loginRouter);
+app.use('/changepassword',changePasswordRouter);
+
+
 app.use('/home/Kho/khoSDTC',KhoSDTCRouter);
 app.use('/home/kho/KhoQT',KhoQTRouter);
 app.use('/home/kho/QCTC',KhoQCTCRouter);
@@ -97,8 +108,12 @@ app.use('/logout',logoutRouter);
 app.use('/home/kho/DMC',KhoDMC_Router)
 
 //admin
-app.use('/userList',userListRouter);
+
 app.use('/admin/userlistv2', userListRouter2);
+app.use('/admin/listmenu',listMenuRouter);
+app.use('/admin/menuPermission',menuPermissionRouter);
+app.use('/admin/rolePermission',RolePermissionRouter);
+app.use('/admin/department',ListDeparmentRouter);
 
 //cat
 app.use('/Cat/SDTC',CatSDTC_Router);
@@ -124,6 +139,8 @@ app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
 app.use('/kho/ordertinhchiv2',KhoOrderTinhChiV2_Router);
 //San Xuat
 app.use('/SX/QTSX',SanXuatQTSX_Router);
+//api
+app.use('/api',apiData_Router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

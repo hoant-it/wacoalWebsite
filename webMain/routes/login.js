@@ -53,9 +53,9 @@ router.post('/',milderedirectHome,async(req,res) =>{
     replacements: { UserName: userName.toUpperCase()},
   }).then(results => {
   dataUserA=results[0];
-  console.log(dataUserA);
+  // console.log(dataUserA);
   })
-  if(!dataUserA){
+  if(dataUserA.length<1){
     res.redirect('/login')
   }
   else{
