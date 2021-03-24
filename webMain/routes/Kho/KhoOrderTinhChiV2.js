@@ -2,27 +2,33 @@ var express = require('express');
 const db= require('../../databases/database').sequelize;
 var router = express.Router();
 
-var arrOrder=[];
+
 var arrNamSelect=[
     // {values:"",name:''},
-    {values:"2102",name:'2102'},
+    // {values:"2102",name:'2102'},
     // {values:"2021",name:'2021'},
 ]
-var _selectNam='';
+
 
 router.get('/', async(req,res) =>{
+    await db.query('wacoal_DONHANGHEAD_Load_Web_V1').then(result => {
+        arrNamSelect=result[0]
+    }).catch(err => {
+        console.log(err.message);
+    })
     // console.log(arrNamSelect);
 res.render('kho/KhoOrderTinhChiV2',{
     title:'TCTDH_wacoal',
     userId:req.signedCookies.userId,
     html:'',
-    arrOrder:arrOrder,
+    arrOrder:[],
     arrNamSelect:arrNamSelect,
-    selectNam:_selectNam,
+    selectNam:'',
 })
 })
 
 router.post('/',async(req, res ) => {
+    var arrOrder=[];
     try {
         const {bsubmit,selectNam,selectKH}= req.body;
         console.log(req.body);
@@ -32,10 +38,17 @@ router.post('/',async(req, res ) => {
             }).then(result =>{
                 arrOrder=result[0];
             });
-            _selectNam=selectNam;
+      
             // console.log(_selectNam);
             // _selectThang=selectThang;
-            res.redirect('/kho/ordertinhchiv2');
+            res.render('kho/KhoOrderTinhChiV2',{
+                title:'TCTDH_wacoal',
+                userId:req.signedCookies.userId,
+                html:'',
+                arrOrder:arrOrder,
+                arrNamSelect:arrNamSelect,
+                selectNam:selectNam,
+            })
         }else{
           console.log("dang cancel ne")
         }

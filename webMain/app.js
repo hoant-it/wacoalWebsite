@@ -37,6 +37,7 @@ const KhoCongDoanMaHangInput_Router=require('./routes/Kho/KhoCongDoanMaHangInput
 
 const KhoOrderTinhChi_Router=require('./routes/Kho/KhoOrderTinhChi');
 const KhoOrderTinhChiV2_Router=require('./routes/Kho/KhoOrderTinhChiV2');
+const KhoCDMHChiKhacMauInput_Router=require('./routes/Kho/Kho_CDMH_ChiKhacMau_Input');
 
 //VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
@@ -137,6 +138,7 @@ app.use('/kho/DMCInput',KhoDMCInput_Router);
 app.use('/kho/congodanmahanginput',KhoCongDoanMaHangInput_Router);
 app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
 app.use('/kho/ordertinhchiv2',KhoOrderTinhChiV2_Router);
+app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router)
 //San Xuat
 app.use('/SX/QTSX',SanXuatQTSX_Router);
 //api

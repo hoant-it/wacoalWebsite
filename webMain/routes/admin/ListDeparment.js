@@ -6,6 +6,7 @@ var router = express.Router();
 /* GET user page. */
 router.get('/', async (req,res) => {
   var ListDepartment=[];
+  var arrListCompany_Load_Web_V1=[];
 
 
   try {
@@ -18,11 +19,21 @@ router.get('/', async (req,res) => {
       console.log(err);
     });
 
+    await db.query("ListCompany_Load_Web_V1",{
+
+    }).then(result => {
+      arrListCompany_Load_Web_V1=result[0];
+      // console.log(ListDepartment);
+    }).catch(err => {
+      console.log(err);
+    });
+
       res.render("admin/ListDeparment", {
         title:'Express',
         userId:req.signedCookies.userId,
         html:'',
         ListDepartment:ListDepartment,
+        arrListCompany_Load_Web_V1:arrListCompany_Load_Web_V1
       });
     
   } catch (error) {
@@ -32,41 +43,21 @@ router.get('/', async (req,res) => {
 
 router.post('/',async(req,res) => {
   var mes='';
-  const {Name,FullName,Email,PositionName,DepartmentCode,Status,PositionCode}=req.body;
-  if(Status === "submitDelete"){
-    try {
-      await db.query(`wacoal_ListUser_Delete_Web_V1 @UserName=:UserName`,{
-        replacements:{UserName:Name}
-      }).then(result => {
-        console.log(result);
-        mes='ok';
-      }).catch(err => {
-        mes = ('Error:', err.parent.message);
-      })
-      
-    } catch (error) {
-      mes = ('Error: ',error.parent.message);
-    }
-  }
+  const {DepartmentCode,DepartmentName,CompanyCode,Status}=req.body;
+
   if(Status === "submitInsert"){
     try {
-      if(Name===""){
-        mes = ('Error: Không được để trống User Name');
+      if(DepartmentCode===""){
+        mes = ('Error: Không được để trống DepartmentCode');
       } else{
-        await   db.query(`wacoal_ListUser_Insert 
-        @UserName=:UserName, 
-        @FullName=:FullName, 
-        @Email=:Email, 
-        @PositionsCode=:PositionsCode,
-        @DepartmentCode=:DepartmentCode,
-        @UserCreate=:UserCreate
+        await   db.query(`ListDepartment_Insert_Web_V1 
+        @DepartmentCode=:DepartmentCode, 
+        @DepartmentName=:DepartmentName, 
+        @CompanyCode=:CompanyCode
         `,{ replacements:{
-            UserName:Name,
-            FullName:FullName,
-            Email:Email,
-            PositionsCode:PositionCode,
-            DepartmentCode:DepartmentCode,
-            UserCreate:req.signedCookies.userId
+          DepartmentCode:DepartmentCode,
+          DepartmentName:DepartmentName,
+          CompanyCode:CompanyCode
           }}).then(result => {
           console.log(result);
           mes = 'ok';
@@ -80,25 +71,20 @@ router.post('/',async(req,res) => {
   }
   if(Status === "submitEdit"){
    try {
-     await db.query(`wacoal_ListUser_Update_Web_V1 
-     @UserName=:UserName,
-     @FullName=:FullName,
-     @Email=:Email,
-     @PositionsCode=:PositionsCode,
-     @DepartmentCode=:DepartmentCode,
-     @UpdateBy=:UpdateBy
-     `,{replacements: {
-      UserName:Name,
-      FullName:FullName,
-      Email:Email,
-      PositionsCode:PositionCode,
-      DepartmentCode: DepartmentCode,
-      UpdateBy:req.signedCookies.userId
-     }}).then(resulf =>{
-       mes='ok';
-     }).catch(err => {
-       mes= ('Error', err.parent.message);
-     })
+    await   db.query(`ListDepartment_Update_Web_V1 
+    @DepartmentCode=:DepartmentCode, 
+    @DepartmentName=:DepartmentName, 
+    @CompanyCode=:CompanyCode
+    `,{ replacements:{
+      DepartmentCode:DepartmentCode,
+      DepartmentName:DepartmentName,
+      CompanyCode:CompanyCode
+      }}).then(result => {
+      console.log(result);
+      mes = 'ok';
+      }).catch(err => {
+      mes = ('Error:', err.parent.message);
+      })
      
    } catch (error) {
     mes= ('Error', err.parent.message);
@@ -108,6 +94,29 @@ router.post('/',async(req,res) => {
   res.send(mes);
 
 });
+
+
+router.post('/DeleteDepartment', async ( req, res ) => {
+  const{DepartmentCode}=req.body;
+var send={};
+try {
+  await db.query('ListDepartment_Delete_Web_V1 @DepartmentCode=:DepartmentCode',{
+    replacements:{DepartmentCode:DepartmentCode}
+  
+  }).then(result =>{
+    send.mes='ok'
+  }).catch( err => {
+    send.mes = ('Error:', err.parent.message);
+  })
+  
+} catch (error) {
+  send.mes= ('Error', err.parent.message);
+}
+
+res.send(send)
+
+
+})
 
 
 

@@ -114,7 +114,7 @@ try {
   console.log(posts[0]);  
 //   var super_array =[];
   for (let i = 0 ; i <posts.length; i++){
-     db.query(`wacoal_ORDERITEM_Insert_V2 @ORDERNO=:ORDERNO, @MAKH=:MAKH , @TENKH=:TENKH, @UNIT=:UNIT, @MAHANG=:MAHANG,
+     db.query(`wacoal_ORDERITEM_Insert_V3 @ORDERNO=:ORDERNO, @MAKH=:MAKH , @TENKH=:TENKH, @UNIT=:UNIT, @MAHANG=:MAHANG,
      @MAUSP=:MAUSP, @QTY=:QTY, @USERNAME=:USERNAME`,{
       replacements: {
         ORDERNO: posts[i].ORDERNO,

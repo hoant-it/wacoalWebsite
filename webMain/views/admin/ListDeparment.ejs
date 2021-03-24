@@ -87,22 +87,29 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Add/Update Employee</h4>
+                                            <h4 class="modal-title">Department Update</h4>
                                         </div>
                                         <div class="modal-body">
 
                                             <div class="form-group">
-                                                <label for="txtUserName">User Name:</label>
-                                                <input type="text" class="form-control" name="txtUserName" id="txtUserName">
+                                                <label for="txtDepartmentCode">Department Code:</label>
+                                                <input type="text" class="form-control" name="txtDepartmentCode" id="txtDepartmentCode">
                                                 <!-- <input type="hidden" id="hidID" value="0" /> -->
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtFullName">Full Name:</label>
-                                                <input type="text" class="form-control" name="txtFullName" id="txtFullName">
+                                                <label for="txtDepartmentName">Department Name:</label>
+                                                <input type="text" class="form-control" name="txtDepartmentName" id="txtDepartmentName">
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtEmail"> Email</label>
-                                                <input type="text" class="form-control" name="txtEmail" id="txtEmail">
+                                                <label for="txtDepartmentName">Company</label>
+                                                <select name="" id="selectCompany" class="form-control">
+                                                  <%  if(arrListCompany_Load_Web_V1 ) { %>
+                                                       <% for ( var i = 0 ; i <arrListCompany_Load_Web_V1.length; i++){ %>>
+                                                            <option value="<%-arrListCompany_Load_Web_V1[i].CompanyCode%>"> <%=arrListCompany_Load_Web_V1[i].CompanyName%></option>
+                                                        <%}%>
+                                                   <% } %>
+                                                    <!-- <option value=""></option> -->
+                                                </select>
                                             </div>
                                 
                                             <div class="modal-footer">

@@ -31,7 +31,7 @@
                                 <div class="col-md-12 ">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2>Order Search <small></small></h2>
+                                            <h2>Tìm kiếm Đơn Hàng <small></small></h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
@@ -47,9 +47,9 @@
                                                       <%  if( arrNamSelect) { %>
                                                           <%  for(var i= 0; i< arrNamSelect.length; i++) { %>
                                                                   <%  if( arrNamSelect[i].values  === selectNam ) { %>
-                                                                        <option value="<%-arrNamSelect[i].values %>" selected> <%=arrNamSelect[i].name %> </option>
+                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>" selected> <%=arrNamSelect[i].ORDERNO %> </option>
                                                                   <%  } else { %>
-                                                                        <option value="<%-arrNamSelect[i].values %>"> <%=arrNamSelect[i].name %> </option>
+                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>"> <%=arrNamSelect[i].ORDERNO %> </option>
                                                                    <% } %>
                                                           <%  } %>
                                                       <%  } else { %>

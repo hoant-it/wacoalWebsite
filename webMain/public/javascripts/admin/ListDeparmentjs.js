@@ -1,17 +1,18 @@
 var _departmentCode = '';
 var _departmentName = '';
+var _companyCode='';
 
 const editData = () => {
          //show modal
  
      $('#btnSave').val("submitEdit");
-     $('#txtMenuCode').val(_departmentCode);
-     $('#txtFormName').val(_departmentName);
+     $('#txtDepartmentCode').val(_departmentCode);
+     $('#txtDepartmentName').val(_departmentName);
+     $('#selectCompany').val(_companyCode);
      $('#modalAddUpdate').modal('show');
-     $('#txtMenuCode').attr("readonly","true") 
-     $('#txtshowCode').attr("readonly","true") 
+     $('#txtDepartmentCode').attr("readonly","true") 
      $('#modalAddUpdate').on('shown.bs.modal', function () {
-        $('#txtFormName').focus();
+        $('#txtDepartmentName').focus();
      }) 
  
 }
@@ -20,35 +21,22 @@ const resetForm = () => {
         $('#btnSave').val("submitInsert");
         // $('#txtMenuCode').removeAttr("readonly") 
         $('#modalAddUpdate').on('shown.bs.modal', function () {
-            $('#txtFormName').focus();
+            $('#txtDepartmentCode').focus();
         }) 
-
-    // $('#txtMenuCode').val('');
-    $('#txtMenuCode').attr("readonly","true") ;
-    $('#txtFormName').val('');
-    $('#txtFormCode').val('');
-    $('#txtprojectCode').val('');
-    $('#txtshowCode').val('ShowWeb');
-    $('#txtshowCode').attr("readonly","true") 
-    $('#txtSystemName').val('');
+    $('#txtDepartmentCode').val('');
+    $('#txtDepartmentName').val('');
 }
 
 const saveData = () => {
-        var menuCode = $('#txtMenuCode').val();
-        var formName = $('#txtFormName').val();
-        var formCode = $('#txtFormCode').val();
-        var projectCode = $('#txtprojectCode').val();
-        var showCode = $('#txtshowCode').val();
-        var systemName=$('#txtSystemName').val();
+        var departmentCode = $('#txtDepartmentCode').val();
+        var departmentName = $('#txtDepartmentName').val();
+        var companyCode = $('#selectCompany').val();
         var status=$('#btnSave').val();
         // console.log(status);
         var data = {
-            MenuCode: menuCode,
-            FormName: formName,
-            FormCode: formCode,
-            ProjectCode: projectCode,
-            ShowCode: showCode,
-            SystemName:systemName,
+            DepartmentCode: departmentCode,
+            DepartmentName: departmentName,
+            CompanyCode: companyCode,
             Status:status
         };
 
@@ -59,7 +47,7 @@ const saveData = () => {
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            url: '/admin/listmenu',
+            url: '/admin/department',
             success: function(res) {
                 if (res=== 'ok') {
                     // console.log('success');
@@ -78,13 +66,13 @@ const saveData = () => {
 
     const deleteData = () => {
         var data={
-            Name:_departmentCode,
+            DepartmentCode:_departmentCode,
         };
         $.ajax({
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            url: '/admin/listmenu/DeleteMenu',
+            url: '/admin/department/DeleteDepartment',
             success: (res) =>{
                 if(res.mes==='ok'){
                     // console.log(JSON.stringify(res));
@@ -105,6 +93,7 @@ $(document).ready(function() {
         var data = table.row(this).data();
         _departmentCode = data[0];
         _departmentName = data[1];
+        _companyCode=data[2];
         // alert('You clicked on ' + data[0] + '\'s row');
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');

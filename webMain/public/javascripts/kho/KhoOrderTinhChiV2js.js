@@ -16,11 +16,13 @@ $(document).ready(function() {
         scrollCollapse: true,
         paging: true,//bat tinh nang chia trang
         lengthChange: false,// tinh nang show so dong tren table
-        buttons: [ 'copy',
+        order:[],
+        buttons: [ 
+            // 'copy',
         {
             // extend: 'excel',
             extend: 'excelHtml5',
-            text: 'export to Excel',
+            text: 'Xuất Excel',
             // header: false,
             // messageTop :'',//them dong tren cung (duoi title ) cua file excel
             // messageBottom:null ,// them dong duoi cung cua file excel

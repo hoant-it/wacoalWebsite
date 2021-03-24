@@ -9,7 +9,7 @@ var message='';
 var messageStatus=''
 router.get('/', (req,res) => {
   console.log(message);
-res.render('kho/KhoCongDoanMaHangInput',{
+res.render('kho/Kho_CDMH_ChiKhacMau_Input',{
     title:'Express',
     userId:req.signedCookies.userId,
     html:'',
@@ -22,7 +22,7 @@ messageStatus=''
 // import excel file vao he thong
 router.post('/', async(req,res) =>{
 try {
- const format=["MAHANG","CONGDOAN","CONGDOAN_NAME_VN","LOAIMAY","VITRICHI","LOAICHI","BIENDO","MATDO","CHIEUDAI_CONGDOAN"]
+ const format=["MAHANG","MAUSP","CONGDOAN","CONGDOAN_NAME_VN","LOAIMAY","VITRICHI","LOAICHI","MAUNL","MAUCHI","BIENDO","MATDO","CHIEUDAI_CONGDOAN"]
   const posts=[];
 //   console.log(req.body);
   var file = req.files.filename;
@@ -33,7 +33,7 @@ try {
   if(err){
     message=('err',err);
     messageStatus='err';
-    return res.redirect('/kho/congodanmahanginput');
+    return res.redirect('/kho/Kho_CDMH_ChiKhacMau_Input');
   } else {
     const workbook=xlsx.readFile('./public/excel/'+filename);
     const sheet_name_list = workbook.SheetNames;
@@ -59,48 +59,63 @@ try {
       if(i===1 && worksheet[cell].v !== format[0] ){
           message='excel File not in Format input';
           messageStatus='err';
-         return res.redirect('/kho/congodanmahanginput');
+         return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===2 && worksheet[cell].v !== format[1] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
     
       }
       if(i===3 && worksheet[cell].v !== format[2] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===4 && worksheet[cell].v !== format[3] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===5 && worksheet[cell].v !== format[4] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===6 && worksheet[cell].v !== format[5] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===7 && worksheet[cell].v !== format[6] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===8 && worksheet[cell].v !== format[7] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
       if(i===9 && worksheet[cell].v !== format[8] ){
         message='excel File not in Format input';
         messageStatus='err';
-       return res.redirect('/kho/congodanmahanginput');
+       return res.redirect('/kho/CDMHchikhacmauinput');
+      }
+      if(i===10 && worksheet[cell].v !== format[9] ){
+        message='excel File not in Format input';
+        messageStatus='err';
+       return res.redirect('/kho/CDMHchikhacmauinput');
+      }
+      if(i===11 && worksheet[cell].v !== format[10] ){
+        message='excel File not in Format input';
+        messageStatus='err';
+       return res.redirect('/kho/CDMHchikhacmauinput');
+      }
+      if(i===12 && worksheet[cell].v !== format[11] ){
+        message='excel File not in Format input';
+        messageStatus='err';
+       return res.redirect('/kho/CDMHchikhacmauinput');
       }
     }
     var flags = [], output = [], l = jsonPagesArray[0].content.length, i;
@@ -112,7 +127,7 @@ try {
 
     // console.log(output)   
     for (var i =0; i < output.length; i++){
-     db.query('CONGDOAN_MAHANG_Delete_Before_Import_Excel_Web_V1 @MAHANG=:MAHANG',{
+     db.query('wacoal_CONGDOAN_MAHANG_CHIDB_Delete_Before_Import_Excel_Web_V1 @MAHANG=:MAHANG',{
        replacements:{MAHANG:output[i]}
      }).then(result => {
 
@@ -122,49 +137,55 @@ try {
     }
     
   for (var i = 0 ; i <jsonPagesArray[0].content.length; i++){
-     db.query(`wacoal_CONGDOAN_MAHANG_Insert_V2 
+     db.query(`wacoal_CONGDOAN_MAHANG_CHIDB_Insert_Excel_V2 
      @MAHANG=:MAHANG,
+     @MAUSP=:MAUSP,
      @CONGDOAN=:CONGDOAN ,
      @CONGDOAN_NAME_VN=:CONGDOAN_NAME_VN,
      @LOAIMAY=:LOAIMAY,
+     @VITRICHI=:VITRICHI,
+     @LOAICHI=:LOAICHI,
+     @MAUNL=:MAUNL,
+     @MAUCHI=:MAUCHI,
      @BIENDO=:BIENDO, 
      @MATDO=:MATDO, 
      @CHIEUDAI_CONGDOAN=:CHIEUDAI_CONGDOAN, 
-     @LOAICHI=:LOAICHI,
-     @VITRICHI=:VITRICHI,
      @UserName=:UserName
      `,{
       replacements: {
         MAHANG: jsonPagesArray[0].content[i].MAHANG,
+        MAUSP:jsonPagesArray[0].content[i].MAUSP,
         CONGDOAN:jsonPagesArray[0].content[i].CONGDOAN,
         CONGDOAN_NAME_VN:jsonPagesArray[0].content[i].CONGDOAN_NAME_VN,
         LOAIMAY:jsonPagesArray[0].content[i].LOAIMAY,
+        VITRICHI:jsonPagesArray[0].content[i].VITRICHI,
+        LOAICHI:jsonPagesArray[0].content[i].LOAICHI,
+        MAUNL:jsonPagesArray[0].content[i].MAUNL,
+        MAUCHI:jsonPagesArray[0].content[i].MAUCHI,
         BIENDO:jsonPagesArray[0].content[i].BIENDO,
         MATDO:jsonPagesArray[0].content[i].MATDO,
         CHIEUDAI_CONGDOAN:jsonPagesArray[0].content[i].CHIEUDAI_CONGDOAN,
-        LOAICHI:jsonPagesArray[0].content[i].LOAICHI,
-        VITRICHI:jsonPagesArray[0].content[i].VITRICHI,
         UserName:req.signedCookies.userId,
      }
     }).catch(err => {
     //   console.log(er.message)
       message=('err',err);
       messageStatus='err';
-      return res.redirect('/kho/congodanmahanginput');
+      return res.redirect('/kho/CDMHchikhacmauinput');
     }); 
   }
   // console.log(super_array);
   del(['./public/excel/'+filename]);
     message='Import excel file successfull';
     messageStatus='ok';
-    return res.redirect('/kho/congodanmahanginput');
+    return res.redirect('/kho/CDMHchikhacmauinput');
 }});
 
 } catch (error) {
   // console.log(error.message);
   message = ('err',error);
   messageStatus='err';
-  return res.redirect('/kho/congodanmahanginput');
+  return res.redirect('/kho/CDMHchikhacmauinput');
 }
 });
 module.exports = router;
