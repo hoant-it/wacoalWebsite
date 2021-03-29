@@ -38,6 +38,7 @@ const KhoCongDoanMaHangInput_Router=require('./routes/Kho/KhoCongDoanMaHangInput
 const KhoOrderTinhChi_Router=require('./routes/Kho/KhoOrderTinhChi');
 const KhoOrderTinhChiV2_Router=require('./routes/Kho/KhoOrderTinhChiV2');
 const KhoCDMHChiKhacMauInput_Router=require('./routes/Kho/Kho_CDMH_ChiKhacMau_Input');
+const KhoOderTinhChiGridViewDev_Router=require('./routes/Kho/KhoOrderTinhChiGridViewDev');
 
 //VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
@@ -47,6 +48,8 @@ const listMenuRouter=require('./routes/admin/ListMenu');
 const menuPermissionRouter= require('./routes/admin/menuPermission');
 const RolePermissionRouter=require('./routes/admin/RolePermission');
 const ListDeparmentRouter=require('./routes/admin/ListDeparment');
+const PoisitionListRouter=require('./routes/admin/PoisitionList');
+const CompanyListRouter= require('./routes/admin/CompanyList');
 //Cat
 const CatSDTC_Router=require('./routes/Cat/CatSDTC');
 const CatTDLCard_Router=require('./routes/Cat/CatTDLCard');
@@ -115,7 +118,8 @@ app.use('/admin/listmenu',listMenuRouter);
 app.use('/admin/menuPermission',menuPermissionRouter);
 app.use('/admin/rolePermission',RolePermissionRouter);
 app.use('/admin/department',ListDeparmentRouter);
-
+app.use('/admin/positionlist',PoisitionListRouter);
+app.use('/admin/company',CompanyListRouter);
 //cat
 app.use('/Cat/SDTC',CatSDTC_Router);
 app.use('/Cat/TDLCard',CatTDLCard_Router);
@@ -138,7 +142,8 @@ app.use('/kho/DMCInput',KhoDMCInput_Router);
 app.use('/kho/congodanmahanginput',KhoCongDoanMaHangInput_Router);
 app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
 app.use('/kho/ordertinhchiv2',KhoOrderTinhChiV2_Router);
-app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router)
+app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router);
+app.use('/kho/KhoOderTinhChiGridViewDev', KhoOderTinhChiGridViewDev_Router);
 //San Xuat
 app.use('/SX/QTSX',SanXuatQTSX_Router);
 //api

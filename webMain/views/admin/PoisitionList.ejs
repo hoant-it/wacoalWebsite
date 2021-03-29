@@ -41,24 +41,24 @@
                                             <table class="table table-striped table-bordered mydatatable" style="width: 100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th>DepartmentCode </th>
-                                                        <th>DepartmentName</th>
-                                                        <th>CompanyCode</th>
+                                                        <th>PositionsCode </th>
+                                                        <th>PositionsName</th>
+                                                        <th>PositionsDescription</th>
                                                     </tr>
 
                                                 </thead>
                                                 <tbody>
-                                                    <% if ( ListDepartment) { %>
-                                                        <% for( var i=0 ; i < ListDepartment.length ; i++) { %>
+                                                    <% if ( arrListPositions) { %>
+                                                        <% for( var i=0 ; i < arrListPositions.length ; i++) { %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=ListDepartment[i].DepartmentCode %>
+                                                                    <%=arrListPositions[i].PositionsCode %>
                                                                 </td>
                                                                 <td>
-                                                                    <%=ListDepartment[i].DepartmentName %>
+                                                                    <%=arrListPositions[i].PositionsName %>
                                                                 </td>
                                                                 <td>
-                                                                    <%=ListDepartment[i].CompanyCode %>
+                                                                    <%=arrListPositions[i].PositionsDescription %>
                                                                 </td>
                                                       
                                                             </tr>
@@ -87,29 +87,22 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Department Update</h4>
+                                            <h4 class="modal-title">Poisiton Update</h4>
                                         </div>
                                         <div class="modal-body">
 
                                             <div class="form-group">
-                                                <label for="txtDepartmentCode">Department Code:</label>
-                                                <input type="text" class="form-control" name="txtDepartmentCode" id="txtDepartmentCode">
+                                                <label for="txtPositionsCode">Positions Code:</label>
+                                                <input type="text" class="form-control" name="txtPositionsCode" id="txtPositionsCode">
                                                 <!-- <input type="hidden" id="hidID" value="0" /> -->
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtDepartmentName">Department Name:</label>
-                                                <input type="text" class="form-control" name="txtDepartmentName" id="txtDepartmentName">
+                                                <label for="txtPositionsName">Positions Name:</label>
+                                                <input type="text" class="form-control" name="txtPositionsName" id="txtPositionsName">
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtDepartmentName">Company</label>
-                                                <select name="" id="selectCompany" class="form-control">
-                                                  <%  if(arrListCompany_Load_Web_V1 ) { %>
-                                                       <% for ( var i = 0 ; i <arrListCompany_Load_Web_V1.length; i++){ %>>
-                                                            <option value="<%-arrListCompany_Load_Web_V1[i].CompanyCode%>"> <%=arrListCompany_Load_Web_V1[i].CompanyName%></option>
-                                                        <%}%>
-                                                   <% } %>
-                                                    <!-- <option value=""></option> -->
-                                                </select>
+                                                <label for="txtPositionsDescription">Department Name:</label>
+                                                <input type="text" class="form-control" name="txtPositionsDescription" id="txtPositionsDescription">
                                             </div>
                                 
                                             <div class="modal-footer">
@@ -148,10 +141,14 @@
         </div>
     </div>
     <% include ../block/script %>
+    <script>
+       var positionsCodeSTRNext ='<%- PositionsCodeSTRNext %>';
+       console.log('positionsCodeSTRNext ' +positionsCodeSTRNext)
+    </script>
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/jquery.dataTables.min.js"></script>
-        <script src="/javascripts/admin/ListDeparmentjs.js"></script>
+        <script src="/javascripts/admin/PoisitionListjs.js"></script>
         <!-- </form> -->
         </form>
 </body>

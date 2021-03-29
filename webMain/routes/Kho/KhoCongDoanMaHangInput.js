@@ -120,6 +120,8 @@ try {
        console.log(err);
      })
     }
+
+    console.log( `list input length `+jsonPagesArray[0].content.length)
     
   for (var i = 0 ; i <jsonPagesArray[0].content.length; i++){
      db.query(`wacoal_CONGDOAN_MAHANG_Insert_V2 
@@ -139,9 +141,9 @@ try {
         CONGDOAN:jsonPagesArray[0].content[i].CONGDOAN,
         CONGDOAN_NAME_VN:jsonPagesArray[0].content[i].CONGDOAN_NAME_VN,
         LOAIMAY:jsonPagesArray[0].content[i].LOAIMAY,
-        BIENDO:jsonPagesArray[0].content[i].BIENDO,
-        MATDO:jsonPagesArray[0].content[i].MATDO,
-        CHIEUDAI_CONGDOAN:jsonPagesArray[0].content[i].CHIEUDAI_CONGDOAN,
+        BIENDO:jsonPagesArray[0].content[i].BIENDO===''?0:jsonPagesArray[0].content[i].BIENDO,
+        MATDO:jsonPagesArray[0].content[i].MATDO===''?0:jsonPagesArray[0].content[i].MATDO,
+        CHIEUDAI_CONGDOAN:jsonPagesArray[0].content[i].CHIEUDAI_CONGDOAN===''?0:jsonPagesArray[0].content[i].CHIEUDAI_CONGDOAN,
         LOAICHI:jsonPagesArray[0].content[i].LOAICHI,
         VITRICHI:jsonPagesArray[0].content[i].VITRICHI,
         UserName:req.signedCookies.userId,

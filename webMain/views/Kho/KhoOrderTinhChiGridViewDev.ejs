@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../block/head %>
+    <link rel="stylesheet" type="text/css" href="/cdn3.devexpress.com/jslib/20.2.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="/cdn3.devexpress.com/jslib/20.2.5/css/dx.light.css" />
+    <link rel="stylesheet" href="/css/kho/KhoOrderTinhChiGridViewDev.css">
+</head>
+
+<body class="nav-md footer_fixed">
+
+    
+        <div class="container body">
+            <div class="main_container">
+                <% include ../block/leftpanelV2 %>
+                    <% include ../block/toppanelV2 %>
+                    <form  method="POST" id="form1"> 
+                        <!-- page content -->
+                        <div class="right_col " role="main" style="min-height: 100vh">
+                            <div class="">
+                                <div class="page-title">
+                                    <div class="title_left">
+                                        <h3> <small><strong></strong></small></h3>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Tìm kiếm Đơn Hàng <small></small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br>
+
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Order No <span class="required">*</span> </label>
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <select class="form-control" name="selectOderNo" id="selectOderNo">
+                                                        <option value="none"></option>
+                                                      <%  if( arrNamSelect) { %>
+                                                          <%  for(var i= 0; i< arrNamSelect.length; i++) { %>
+                                                                  <%  if( arrNamSelect[i].values  === selectNam ) { %>
+                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>" selected> <%=arrNamSelect[i].ORDERNO %> </option>
+                                                                  <%  } else { %>
+                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>"> <%=arrNamSelect[i].ORDERNO %> </option>
+                                                                   <% } %>
+                                                          <%  } %>
+                                                      <%  } else { %>
+                                                        <option> </option>
+                                                      <%  } %>
+                                                    </select>
+                                                </div>
+                                        
+                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Khách Hàng <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-2 col-sm-2 ">
+                                                    <select class="form-control" name="selectKH" id="selectKH">
+                                                        <option value="none"></option>
+                                                        <%  if( arrKhachHang) { %>
+                                                            <%  for(var i= 0; i< arrKhachHang.length; i++) { %>
+                                                                <option value="<%-arrKhachHang[i].MAKH %>"> <%=arrKhachHang[i].TENKH_EN %> </option>
+                                                            <%  } %>
+                                                        <%  } else { %>
+                                                          <option> </option>
+                                                        <%  } %>
+                                                    </select>
+                                                </div>
+                                                <!-- hang tren -->
+                                          
+                                                <div class="col-md-1 col-sm-1 ">
+                                                    <button type="submit" name="bsubmit" value="submitSearch" class="btn btn-primary" id="btnSearchId">Execute</button>
+
+                                                </div>
+                                                
+                                                <!-- hang tren -->
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Danh Sách Tính Chỉ Theo Đơn Hàng</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content" id="xcontentid">
+                                            <div id="GridTinhChi"></div>
+                                           
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /page content -->
+
+                        <!-- footer content -->
+                        <footer>
+                            <div class="pull-right">
+                                Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </footer>
+                        <!-- /footer content -->
+            </div>
+        </div>
+        <% include ../block/script %>
+        <script src="/cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+        <script src="/cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+        <script src="/cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+        <script>
+            window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))
+        </script>
+           <script src="/cdn3.devexpress.com/jslib/20.2.5/js/dx.all.js"></script>
+           <script src="/unpkg.com/devextreme-aspnet-data@2.7.1/js/dx.aspnet.data.js"></script>
+           <script src="/javascripts/kho/KhoOrderTinhChiGridViewDevjs.js"></script>
+    </form>
+</body>
+
+</html>

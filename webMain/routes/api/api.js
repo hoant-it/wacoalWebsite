@@ -150,5 +150,55 @@ router.get('/gridviewUserList/:roleCode', async( req, res ) => {
     }
 })
 
+router.get('/khoOrderTinhchiGridview/:Order/:KhachHang', async( req, res ) => {
+    const{Order,KhachHang}=req.params;
+ console.log(req.params);
+      
+    try {
+        await db.query('wacoal_Load_TinhChiOrder_V4 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
+            replacements:{ORDERNO:  Order, MAKH:KhachHang}
+        }).then(result => {
+            res.json({
+                data:result[0]
+            })
+        }).catch(err =>{
+            res.json({
+                data:[],
+                message:"err: "+err.message
+            })
+        })
+    } catch (error) {
+        res.json({
+            data:{},
+            message:`Query Failed. Error: ${error}`
+        })
+    }
+})
+
+
+router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang', async( req, res ) => {
+    const{Order,KhachHang}=req.params;
+ console.log(req.params);
+      
+    try {
+        await db.query('wacoal_OrderTinhChiMaHangMiss_Web_v1 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
+            replacements:{ORDERNO:  Order, MAKH:KhachHang}
+        }).then(result => {
+            res.json({
+                data:result[0]
+            })
+        }).catch(err =>{
+            res.json({
+                data:[],
+                message:"err: "+err.message
+            })
+        })
+    } catch (error) {
+        res.json({
+            data:{},
+            message:`Query Failed. Error: ${error}`
+        })
+    }
+})
 
 module.exports = router;
