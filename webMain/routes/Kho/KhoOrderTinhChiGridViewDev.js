@@ -26,8 +26,6 @@ res.render('kho/KhoOrderTinhChiGridViewDev',{
     userId:req.signedCookies.userId,
     html:'',
     arrNamSelect:arrNamSelect,
-    arrKhachHang:arrKhachHang,
-    selectNam:'',
 })
 })
 

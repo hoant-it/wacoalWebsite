@@ -39,47 +39,42 @@
                                         </div>
                                         <div class="x_content">
                                             <br>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-md-4 col-sm-4 " for="" >Order No <span class="required">*</span></label>
+                                                        <div class="col-md-8 col-sm-8 ">
+                                                            <select class="form-control" name="selectOderNo" id="selectOderNo">
+                                                                <option value="none"></option>
+                                                              <%  if( arrNamSelect) { %>
+                                                                  <%  for(var i= 0; i< arrNamSelect.length; i++) { %>
+                                                                                <option value="<%-arrNamSelect[i].ORDERNO %>"> <%=arrNamSelect[i].ORDERNO %> </option>
+                                                                  <%  } %>
+                                                              <%  } else { %>
+                                                                <option> </option>
+                                                              <%  } %>
+                                                            </select>
+                                                        </div>
+                                                      </div>
+                                                </div>
 
-                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Order No <span class="required">*</span> </label>
-                                                <div class="col-md-1 col-sm-1 ">
-                                                    <select class="form-control" name="selectOderNo" id="selectOderNo">
-                                                        <option value="none"></option>
-                                                      <%  if( arrNamSelect) { %>
-                                                          <%  for(var i= 0; i< arrNamSelect.length; i++) { %>
-                                                                  <%  if( arrNamSelect[i].values  === selectNam ) { %>
-                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>" selected> <%=arrNamSelect[i].ORDERNO %> </option>
-                                                                  <%  } else { %>
-                                                                        <option value="<%-arrNamSelect[i].ORDERNO %>"> <%=arrNamSelect[i].ORDERNO %> </option>
-                                                                   <% } %>
-                                                          <%  } %>
-                                                      <%  } else { %>
-                                                        <option> </option>
-                                                      <%  } %>
-                                                    </select>
+                                                <div class="col-md-3 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-md-4 col-sm-4 " for="" >Khách Hàng <span class="required">*</span></label>
+                                                        <div class="col-md-8 col-sm-8 ">
+                                                            <div id="searchBoxKH"></div>
+                                                        </div>
+                                                      </div>
                                                 </div>
-                                        
-                                                <label class="col-form-label col-md-1 col-sm-1 label-align" for="first-name">Khách Hàng <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-2 col-sm-2 ">
-                                                    <select class="form-control" name="selectKH" id="selectKH">
-                                                        <option value="none"></option>
-                                                        <%  if( arrKhachHang) { %>
-                                                            <%  for(var i= 0; i< arrKhachHang.length; i++) { %>
-                                                                <option value="<%-arrKhachHang[i].MAKH %>"> <%=arrKhachHang[i].TENKH_EN %> </option>
-                                                            <%  } %>
-                                                        <%  } else { %>
-                                                          <option> </option>
-                                                        <%  } %>
-                                                    </select>
-                                                </div>
-                                                <!-- hang tren -->
-                                          
-                                                <div class="col-md-1 col-sm-1 ">
-                                                    <button type="submit" name="bsubmit" value="submitSearch" class="btn btn-primary" id="btnSearchId">Execute</button>
 
+                                                <div class="col-md-3 col-sm-3">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6 col-sm-6 ">
+                                                            <button type="submit" name="bsubmit" value="submitSearch" class="btn btn-primary" id="btnSearchId">Execute</button>
+                                                        </div>
+                                                      </div>
                                                 </div>
-                                                
-                                                <!-- hang tren -->
+                                            </div>
                                             
                                         </div>
                                     </div>

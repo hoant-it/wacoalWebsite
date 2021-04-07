@@ -1,3 +1,7 @@
+
+
+
+
 const GridviewMaHangMissLoad = (oderNo,khachHang) => {
     var url = "/api/khoOrderTinhchiGridviewMaHangMiss/";
     // console.log(" url " + url + oderNo+khachHang);
@@ -526,27 +530,45 @@ const GridviewOrderLoad = (oderNo,khachHang) => {
 }
 
 
-// const deleteData = () => {
-//     var data={
-//         CompanyCode:_companyCode,
-//     };
-//     $.ajax({
-//         type: 'POST',
-//         data: JSON.stringify(data),
-//         contentType: 'application/json',
-//         url: '/admin/company/DeleteCompany',
-//         success: (res) =>{
-//             if(res.mes==='ok'){
-//                 // console.log(JSON.stringify(res));
-//                 alert("sucess");
-//                 location.reload();
-//             }
-//             else{
-//                 alert(res.send);
-//             }
-//         }
-//     });
-// }
+
+const searchBoxKhachHang=() =>{
+    const selectBoxData =  DevExpress.data.AspNet.createStore({
+        key: "MAKH",
+        loadMode:"raw",
+        loadUrl:"/api/Khowacoal_KHACHHANG_load_Web_V1",
+    });
+
+    var searchBox = $("#searchBoxKH").dxSelectBox({
+        dataSource:selectBoxData,
+        // DevExpress.data.AspNet.createStore({
+        //     key: "MAKH",
+        //     loadUrl: serviceUrl + "/Khowacoal_KHACHHANG_load_Web_V1",
+        //     // insertUrl: serviceUrl + "/InsertAction"
+        // }),
+        displayExpr: "TENKH_EN",
+        valueExpr: "MAKH",
+        searchEnabled: true,
+        searchExpr:'TENKH_EN',
+        searchMode:'contains',
+        searchTimeout:200,
+        minSearchLength:0,
+        showDataBeforeSearch:false,
+        //       onValueChanged: function (data) {
+        //     // var $result = $(".current-value");
+
+        //     if (data.value !== null) {
+        //         var selectedItem = data.component.option('selectedItem');
+        //         // $result.text(selectedItem.Name + " (ID: " + selectedItem.ID + ")");
+        //         console.log(" (ID: " + selectedItem.MAKH + ")")
+        //     } else {
+        //         console.log("Not selected")
+        //         // $result.text("Not selected");
+        //     }
+        // },
+    }).dxSelectBox("instance");
+}
+
+
 
 
 $(function() {
@@ -555,12 +577,17 @@ $(function() {
     $("#btnDeleteId").hidden = true;
     $("#btnSaveId").hidden = true;
     $("#btnCancelId").hidden = true;
+    searchBoxKhachHang();
+    
+
     $('#btnSearchId').click((e) => {
         // console.log('click ne');
         e.preventDefault();
         var oderNo=$('#selectOderNo').val();
-        var khachHang=$('#selectKH').val();
-
+        var khachHang=$("#searchBoxKH").dxSelectBox('instance').option('value');
+        // $('#selectKH').val();
+        
+//    console.log("searchBox" + $("#searchBox").dxSelectBox('instance').option('value'));
         var data={
                 oderNo:oderNo,
                 khachHang:khachHang

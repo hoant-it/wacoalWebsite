@@ -60,8 +60,15 @@ const CatGKT_Router=require('./routes/Cat/CatGKT');
 const MayQTSX_Router=require('./routes/May/MayQTSX');
 //San Xuat
 const SanXuatQTSX_Router= require('./routes/SanXuat/SXQTSX');
+//KiemPham
+const QTKP_Router=require('./routes/KiemPham/QTKP');
+//Ki Thuat
+const QTKT_Router=require('./routes/KiThuat/QuyTrinhKiThuat');
+
 //api
 const apiData_Router= require('./routes/api/api');
+
+
 
 // const IN_PROD= node
 
@@ -146,6 +153,10 @@ app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router);
 app.use('/kho/KhoOderTinhChiGridViewDev', KhoOderTinhChiGridViewDev_Router);
 //San Xuat
 app.use('/SX/QTSX',SanXuatQTSX_Router);
+//Kiem Pham
+app.use('/kiempham/QTKP',QTKP_Router);
+//Ki Thuat
+app.use('/kithuat/QTKT',QTKT_Router);
 //api
 app.use('/api',apiData_Router);
 

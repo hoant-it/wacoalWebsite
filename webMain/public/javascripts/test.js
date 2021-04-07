@@ -13,8 +13,15 @@ function resetTab(){
 $(document).ready(function() {
     $('#btn-add-tab').click(function() {
         tabID++;
-        $('#tab-list').append($('<li><a href="#tab' + tabID + '" role="tab" data-toggle="tab"><span>Tab ' + tabID + '</span> <span class="glyphicon glyphicon-pencil text-muted edit"></span> <button class="close" type="button" title="Remove this page">×</button></a></li>'));
-        $('#tab-content').append($('<div class="tab-pane fade" id="tab' + tabID + '">Tab ' + tabID + ' content</div>'));
+        $('#tab-list').append($(`<li>
+        <a href="#tab${tabID}" role="tab" data-toggle="tab">
+        <span>Tab${tabID} </span>
+        <button class="close" type="button" title="Remove this page">×</button>
+        </a>
+        </li>`));
+        $('#tab-content').append($(`<div class="tab-pane fade" id="tab${tabID}">Tab${tabID} content 
+         <img src="/images/media.jpg" alt="" style="width: 100%; height: 90vh;">
+        </div>`));
         $(".edit").click(editHandler);
     });
     

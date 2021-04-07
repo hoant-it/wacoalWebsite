@@ -55,51 +55,31 @@ router.post('/',milderedirectHome,async(req,res) =>{
   dataUserA=results[0];
   // console.log(dataUserA);
   })
-  if(dataUserA.length<1){
-    res.redirect('/login')
-  }
-  else{
-    var bytes = CryptoJS.AES.decrypt(dataUserA[0].WebPass, 'itsasecret123');
-    // Chuyển sang chuỗi gốc
-    var message_decode = bytes.toString(CryptoJS.enc.Utf8);
-    // console.log(`chuỗi đã được giải mã hóa : ${message_decode}`);
-    // console.log(`pass la  : ${req.body.password}`);
-    if(message_decode===req.body.password){
-      res.cookie('userId',userName,{
-        signed:true
-      })
-      res.cookie('IDAuthorization',dataUserA[0].IDAuthorization,{
-        signed:true
-      })
-      res.cookie('UserInGroupID',dataUserA[0].UserInGroupID,{
-        signed:true
-      })
-
-      // html="";
-      // html=`<ul class="nav side-menu" id="side-menu">`;
-      // await db.query('sp_Wacoal_LoadMenuWeb_V1 @IDAuthorization=:IDAuthorization,@UserInGroupID=:UserInGroupID',{
-      //   replacements: { IDAuthorization: dataUserA[0].IDAuthorization, UserInGroupID:dataUserA[0].UserInGroupID},
-      // }).then(result => {
-      //   arr=result[0];
-      //   // console.log(arr);
-      //   list_cat=data_Tree(arr,"0");
-      //   html+=`</ul>`
-      // });
-
-      // console.log(html)
-      // localStorage.setItem('my_key',html);
-      // localStorage.setItem('html',html);
-      // sessionStorage.setItem('html',html)
-    //   res.cookie('html',html,{
-    //    signed:true
-    //  })
-
-      res.redirect('/home')
+    if(dataUserA.length<1){
+      res.redirect('/login')
     }
     else{
-      res.redirect('/Login')
+      var bytes = CryptoJS.AES.decrypt(dataUserA[0].WebPass, 'itsasecret123');
+      // Chuyển sang chuỗi gốc
+      var message_decode = bytes.toString(CryptoJS.enc.Utf8);
+      // console.log(`chuỗi đã được giải mã hóa : ${message_decode}`);
+      // console.log(`pass la  : ${req.body.password}`);
+      if(message_decode===req.body.password){
+        res.cookie('userId',userName,{
+          signed:true
+        })
+        res.cookie('IDAuthorization',dataUserA[0].IDAuthorization,{
+          signed:true
+        })
+        res.cookie('UserInGroupID',dataUserA[0].UserInGroupID,{
+          signed:true
+        })
+        res.redirect('/home')
+      }
+      else{
+        res.redirect('/Login')
+      }
     }
-  }
 });
 
 module.exports = router;

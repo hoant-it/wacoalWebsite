@@ -20,7 +20,7 @@ router.get('/', async (req,res) => {
     console.log(err.message);
   })
   // console.log(message);
-res.render('treelisttest',{
+res.render('test',{
   title:'treelist test',
   userId:'',
   html:'',

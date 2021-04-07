@@ -1,5 +1,6 @@
 <html lang="en">
-    <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -19,122 +20,123 @@
 
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body class="login">
+<body class="login">
     <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
-      
-    
-      <div class="login_wrapper">
-        
-       
-        <div class="animate form login_form">
-         
-      
-          <section class="login_content">
-            <img src="images/Wacoal_images.png" alt="..." class="img-circle profile_img">
-              <h1>Login Form</h1>
-              <form action="/login" method="POST">
-              <div>
-                <input type="text" name="userName" class="form-control" placeholder="Username" required="" >
-              </div>
-              <div>
-                <input type="password" name="password" class="form-control" placeholder="Password" required="">
-              </div>
-              <div>
-            
-                <button type="submit" class="btn btn-success">Log in</button>
-              </form>
-                 
-                  <button class="btn btn-primary" value="showAlert" onclick="showAlert();"> Lost your password?</button>
-                 <% if (messageError===""){ %>
-                    <div class="container" style="display:none;" id="myAlert">
-                      <div class="alert alert-success alert-dismissable" id="myAlert2">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          Failed! contact to administrator (114).
-                      </div>
-                  </div>
-               <%   } else { %>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <img src="images/Wacoal_images.png" alt="..." class="img-circle profile_img">
+                    <h1>Login Form</h1>
+                    <form action="/login" method="POST">
+                        <div>
+                            <input type="text" name="userName" class="form-control" placeholder="Username" required="" id="userName">
+                        </div>
+                        <div>
+                            <input type="password" name="password" class="form-control" placeholder="Password" required="" id='password'>
+                        </div>
+                        <div>
 
-                    <div class="container" style="display:none;" id="myAlert">
-                      <div class="alert alert-success alert-dismissable" id="myAlert2">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          <%=messageError%>
-                      </div>
-                  </div>
+                            <button type="submit" class="btn btn-success">Log in</button>
+                    </form>
+
+                    <button class="btn btn-primary" value="showAlert" onclick="showAlert();"> Lost your password?</button>
+                    <% if (messageError==="" ){ %>
+                        <div class="container" style="display:none;" id="myAlert">
+                            <div class="alert alert-success alert-dismissable" id="myAlert2">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                Failed! contact to administrator (114).
+                            </div>
+                        </div>
+                        <% } else { %>
+
+                            <div class="container" style="display:none;" id="myAlert">
+                                <div class="alert alert-success alert-dismissable" id="myAlert2">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <%=messageError%>
+                                </div>
+                            </div>
 
 
-               <%   } %>
-                 
-              </div>
-              <div class="clearfix"></div>
+                            <% } %>
 
-              <div class="separator">
-                <!-- <p class="change_link">New to site?
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="separator">
+                                    <!-- <p class="change_link">New to site?
                   <a href="#signup" class="to_register"> Create Account </a>
                 </p> -->
 
-                <div class="clearfix"></div>
-                <br>
-                <div>
-                  <p>©2021 All Rights Reserved. Wacoal is a Bootstrap 3 template. Privacy and Terms</p>
-                </div>
-              </div>
-            
-          </section>
-        </div>
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <div>
+                                        <p>©2021 All Rights Reserved. Wacoal is a Bootstrap 3 template. Privacy and Terms</p>
+                                    </div>
+                                </div>
 
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="">
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="">
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="">
-              </div>
-              <div class="clearfix"></div>
-              <div class="separator">
-           
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
-                </p>
-                <div class="clearfix"></div>
-                <br>
-                <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-                </div>
-              </div>
+                </section>
+            </div>
 
-              <div class="container" style="display:none;" id="myAlert">
-                <div class="alert alert-success alert-dismissable" id="myAlert2">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    contact administrator (114).
+            <div id="register" class="animate form registration_form">
+                <section class="login_content">
+                    <form>
+                        <h1>Create Account</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" required="">
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Email" required="">
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" required="">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <p class="change_link">Already a member ?
+                                <a href="#signin" class="to_register"> Log in </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br>
+                            <div>
+                                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            </div>
+                        </div>
+
+                        <div class="container" style="display:none;" id="myAlert">
+                            <div class="alert alert-success alert-dismissable" id="myAlert2">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                contact administrator (114).
+                            </div>
+                    </form>
+                </section>
                 </div>
-            </form>
-          </section>
+            </div>
         </div>
-      </div>
-    </div>
-    <% include ./block/script.ejs%>
+      
+        <% include ./block/script.ejs%>
 
 </body>
 
 <script>
-function showAlert(){
-  if($("#myAlert").find("div#myAlert2").length==0){
-    $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
-  }
-  $("#myAlert").css("display", "");
-}
-
+    function showAlert() {
+        if ($("#myAlert").find("div#myAlert2").length == 0) {
+            $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
+        }
+        $("#myAlert").css("display", "");
+    }
+</script>
+<script>
+    $("#userName").change(function(){
+        if($('#userName').val().toUpperCase()==="VNW"){
+        $('#password').val("W@c0Al");
+    }
+});
 </script>
 
 </html>
