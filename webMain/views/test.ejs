@@ -9,7 +9,112 @@
 <body class="nav-md footer_fixed">
     <div class="container body">
         <div class="main_container">
-            <% include ./block/leftpanelV2 %>
+                       <!-- sidebar menu -->
+                       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section active" id="menu_section">
+                            <ul class="nav side-menu" id="side-menu">
+                                <li class="active"><a> Nhà máy Việt Nam Wacoal <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display:block">
+                                        <li class="active"><a> Việt Nam Wacoal <span class="fa fa-chevron-down"></span></a>
+                                            <ul id="child-menu" class="nav child_menu" style="display: block;">
+                                                <li onclick="getidli()" id="VNWC_SDTCId"><a > Sơ Đồ Tổ Chức</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Quản lý Sản Xuất <span class="fa fa-chevron-down"></span></a>
+                                            <ul id="child_menu" class="nav child_menu">
+                                                <li id="QTSX"><a > Quy Trình Sản Xuất</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Kho <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li onclick="getidli()"><a href="/Kho/QTQLNVL"> Quy Trình Quản Lý Nguyên Vật Liệu</a>
+                                                </li>
+                                                <li><a> Đặt Chỉ <span class="fa fa-chevron-down"></span></a>
+                                                    <ul id="child_menu" class="nav child_menu">
+                                                        <li><a> Master File <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="/kho/inputorderv2"> Nhập Đơn Hàng (Excel file)</a>
+                                                                </li>
+                                                                <li><a href="/kho/congodanmahanginput"> Nhập công đoạn theo mã hàng (excel file)</a>
+                                                                </li>
+                                                                <li><a href="/kho/CDMHchikhacmauinput"> Nhập công đoạn chỉ khác màu (excel file)</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="/kho/QTDC"> Sơ Đồ Quy Trình Đặt Chỉ</a>
+                                                        </li>
+                                                        <li><a href="/kho/KhoOderTinhChiGridViewDev"> Tính chỉ theo đơn hàng</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Cắt <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/Cat/SDTC"> Quy Trình Cắt</a>
+                                                </li>
+                                                <li><a href="/Cat/LLKHCard"> Liên Lạc Khách Hàng</a>
+                                                </li>
+                                                <li><a href="/Cat/TDLCard"> Tải Dữ Liệu Card từ Server</a>
+                                                </li>
+                                                <li><a href="/Cat/CatMasterPattern"> Cắt Master Pattern</a>
+                                                </li>
+                                                <li><a href="/Cat/GKT"> Giao Master Pattern cho Kỷ Thuật</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> May <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/May/QTSX"> Quy Trình sản Xuất BP May</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Kiểm Phẩm <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/kiempham/QTKP"> Quy Trình Kiểm Phẩm</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Kĩ Thuật <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/kithuat/QTKT"> Quy Trình Kĩ Thuật</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a> Administrator <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/admin/company"> Company List</a>
+                                                </li>
+                                                <li><a href="/admin/positionlist"> Poisition List</a>
+                                                </li>
+                                                <li><a href="/admin/userlistv2"> User List </a>
+                                                </li>
+                                                <li><a href="/admin/listmenu"> Menu List</a>
+                                                </li>
+                                                <li><a href="/admin/menuPermission"> Menu Permission</a>
+                                                </li>
+                                                <li><a href="/admin/rolePermission"> Role Permission</a>
+                                                </li>
+                                                <li><a href="/admin/department"> Deparment List</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+        
+                        </div>
+                         
+        
+                    </div>
+                    <!-- /sidebar menu -->
+   
+           
+    
+        
+
             <% include ./block/toppanelV2 %>
             <!-- page content -->
             <div class="right_col " role="main" style="min-height: 100vh">

@@ -10,7 +10,16 @@ function resetTab(){
 	tabID--;
 }
 
+getidli = () => {
+  alert(this.id);
+}
+
 $(document).ready(function() {
+  // $("#child-menu li").click(function() {
+  //   alert(this.id); // get id of clicked li
+  // });
+
+
     $('#btn-add-tab').click(function() {
         tabID++;
         $('#tab-list').append($(`<li>
