@@ -11,17 +11,17 @@ const upload=require('express-fileupload');
 
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
-var homeRouter=require('./routes/home/home');
-var testRouter=require('./routes/test/test');
-var loginRouter=require('./routes/login');
-var logoutRouter= require('./routes/logout');
-var changePasswordRouter= require('./routes/changePassword');
+const homeRouter=require('./routes/home/home');
+const testRouter=require('./routes/test/test');
+const loginRouter=require('./routes/login');
+const logoutRouter= require('./routes/logout');
+const changePasswordRouter= require('./routes/changePassword');
 
 
 //kho
-var KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
-var KhoQTRouter=require('./routes/Kho/KhoQT');
-var KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
+const KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
+const KhoQTRouter=require('./routes/Kho/KhoQT');
+const KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
 const KhoDMC_Router=require('./routes/Kho/KhoDMC');
 const Kho_QTQLNVL_Router=require('./routes/Kho/Kho_QTQLNVL');
 const KhoQTDatChi_Router=require('./routes/Kho/KhoQTDatChi');
@@ -39,6 +39,8 @@ const KhoOrderTinhChi_Router=require('./routes/Kho/KhoOrderTinhChi');
 const KhoOrderTinhChiV2_Router=require('./routes/Kho/KhoOrderTinhChiV2');
 const KhoCDMHChiKhacMauInput_Router=require('./routes/Kho/Kho_CDMH_ChiKhacMau_Input');
 const KhoOderTinhChiGridViewDev_Router=require('./routes/Kho/KhoOrderTinhChiGridViewDev');
+
+const KhoMauNL_MauMH_Router=require('./routes/Kho/MauNL_MauMH_Input');
 
 //VietNam Wacoal
 var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
@@ -151,6 +153,7 @@ app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
 app.use('/kho/ordertinhchiv2',KhoOrderTinhChiV2_Router);
 app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router);
 app.use('/kho/KhoOderTinhChiGridViewDev', KhoOderTinhChiGridViewDev_Router);
+app.use('/kho/MauNLMauMaHang',KhoMauNL_MauMH_Router);
 //San Xuat
 app.use('/SX/QTSX',SanXuatQTSX_Router);
 //Kiem Pham

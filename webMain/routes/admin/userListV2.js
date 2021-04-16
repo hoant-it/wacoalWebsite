@@ -81,12 +81,7 @@ router.post('/',async(req,res) => {
             PositionsCode:PositionCode,
             DepartmentCode:DepartmentCode,
             UserCreate:req.signedCookies.userId
-          }}).then(result => {
-          console.log(result);
-          mes = 'ok';
-          }).catch(err => {
-          mes = ('Error:', err.parent.message);
-          })
+          }})
       }
         } catch (error) {
       mes = ('Error: ',error.parent.message);
@@ -108,14 +103,9 @@ router.post('/',async(req,res) => {
       PositionsCode:PositionCode,
       DepartmentCode: DepartmentCode,
       UpdateBy:req.signedCookies.userId
-     }}).then(resulf =>{
-       mes='ok';
-     }).catch(err => {
-       mes= ('Error', err.parent.message);
-     })
-     
+     }})
    } catch (error) {
-    mes= ('Error', err.parent.message);
+    mes= ('Error: ', err.parent.message);
    }
   }
 

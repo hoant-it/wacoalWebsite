@@ -155,7 +155,7 @@ router.get('/khoOrderTinhchiGridview/:Order/:KhachHang', async( req, res ) => {
  console.log(req.params);
       
     try {
-        await db.query('wacoal_Load_TinhChiOrder_V4 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
+        await db.query('wacoal_Load_TinhChiOrder_V6 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
             replacements:{ORDERNO:  Order, MAKH:KhachHang}
         }).then(result => {
             res.json({

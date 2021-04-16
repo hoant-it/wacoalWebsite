@@ -22,7 +22,7 @@ messageStatus=''
 // import excel file vao he thong
 router.post('/', async(req,res) =>{
 try {
- const format=["MAHANG","MAUSP","CONGDOAN","CONGDOAN_NAME_VN","LOAIMAY","VITRICHI","LOAICHI","MAUNL","MAUCHI","BIENDO","MATDO","CHIEUDAI_CONGDOAN"]
+ const format=["MAHANG","MAUMH","CONGDOAN","CONGDOAN_NAME_VN","LOAIMAY","VITRICHI","LOAICHI","MAUNL","MAUCHI","BIENDO","MATDO","CHIEUDAI_CONGDOAN"]
   const posts=[];
 //   console.log(req.body);
   var file = req.files.filename;
@@ -137,9 +137,9 @@ try {
     }
     
   for (var i = 0 ; i <jsonPagesArray[0].content.length; i++){
-     db.query(`wacoal_CONGDOAN_MAHANG_CHIDB_Insert_Excel_V2 
+     db.query(`wacoal_CONGDOAN_MAHANG_CHIDB_Insert_Excel_V3 
      @MAHANG=:MAHANG,
-     @MAUSP=:MAUSP,
+     @MAUMH=:MAUMH,
      @CONGDOAN=:CONGDOAN ,
      @CONGDOAN_NAME_VN=:CONGDOAN_NAME_VN,
      @LOAIMAY=:LOAIMAY,
@@ -154,7 +154,7 @@ try {
      `,{
       replacements: {
         MAHANG: jsonPagesArray[0].content[i].MAHANG,
-        MAUSP:jsonPagesArray[0].content[i].MAUSP,
+        MAUMH:jsonPagesArray[0].content[i].MAUMH,
         CONGDOAN:jsonPagesArray[0].content[i].CONGDOAN,
         CONGDOAN_NAME_VN:jsonPagesArray[0].content[i].CONGDOAN_NAME_VN,
         LOAIMAY:jsonPagesArray[0].content[i].LOAIMAY,

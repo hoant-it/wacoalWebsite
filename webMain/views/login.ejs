@@ -31,7 +31,7 @@
                 <section class="login_content">
                     <img src="images/Wacoal_images.png" alt="..." class="img-circle profile_img">
                     <h1>Login Form</h1>
-                    <form action="/login" method="POST">
+                          <form action="/login" method="POST">
                         <div>
                             <input type="text" name="userName" class="form-control" placeholder="Username" required="" id="userName">
                         </div>
@@ -41,29 +41,27 @@
                         <div>
 
                             <button type="submit" class="btn btn-success">Log in</button>
-                    </form>
+                          </form>
 
-                    <button class="btn btn-primary" value="showAlert" onclick="showAlert();"> Lost your password?</button>
-                    <% if (messageError==="" ){ %>
-                        <div class="container" style="display:none;" id="myAlert">
-                            <div class="alert alert-success alert-dismissable" id="myAlert2">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Failed! contact to administrator (114).
-                            </div>
+                                <button class="btn btn-primary" value="showAlert" onclick="showAlert();"> Lost your password?</button>
+                                <% if (messageError==="" ){ %>
+                                    <div class="container" style="display:none;" id="myAlert">
+                                        <div class="alert alert-success alert-dismissable" id="myAlert2">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            Failed! contact to administrator (114).
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+
+                                        <div class="container" style="display:none;" id="myAlert">
+                                            <div class="alert alert-success alert-dismissable" id="myAlert2">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <%=messageError%>
+                                            </div>
+                                        </div>
+                                            <% } %>
+
                         </div>
-                        <% } else { %>
-
-                            <div class="container" style="display:none;" id="myAlert">
-                                <div class="alert alert-success alert-dismissable" id="myAlert2">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <%=messageError%>
-                                </div>
-                            </div>
-
-
-                            <% } %>
-
-                                </div>
                                 <div class="clearfix"></div>
 
                                 <div class="separator">
@@ -118,7 +116,7 @@
                 </div>
             </div>
         </div>
-      
+
         <% include ./block/script.ejs%>
 
 </body>
@@ -132,11 +130,11 @@
     }
 </script>
 <script>
-    $("#userName").change(function(){
-        if($('#userName').val().toUpperCase()==="VNW"){
-        $('#password').val("W@c0Al");
-    }
-});
+    $("#userName").change(function() {
+        if ($('#userName').val().toUpperCase() === "VNW") {
+            $('#password').val("W@c0Al");
+        }
+    });
 </script>
 
 </html>

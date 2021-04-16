@@ -47,7 +47,7 @@ const redirectLogin= (req,res,next) =>{
 router.get('/',redirectLogin, async (req, res ) =>{
   html="";
   html=`<ul class="nav side-menu" id="side-menu">`;
-  console.log('  IDAuthorization ' + req.signedCookies.IDAuthorization +  ' UserInGroupID ' + req.signedCookies.UserInGroupID);
+  // console.log('  IDAuthorization ' + req.signedCookies.IDAuthorization +  ' UserInGroupID ' + req.signedCookies.UserInGroupID);
   await db.query('sp_Wacoal_LoadMenuWeb_V1 @IDAuthorization=:IDAuthorization,@UserInGroupID=:UserInGroupID',{
     replacements: { IDAuthorization: req.signedCookies.IDAuthorization, UserInGroupID:req.signedCookies.UserInGroupID},
   }).then(result => {

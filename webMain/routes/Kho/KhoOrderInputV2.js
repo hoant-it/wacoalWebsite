@@ -22,7 +22,7 @@ messageStatus=''
 // import excel file vao he thong
 router.post('/', (req,res) =>{
 try {
- const format=["ORDERNO","MAKH","TENKH","UNIT","MAHANG","MAUSP","QTY"]
+ const format=["ORDERNO","MAKH","TENKH","UNIT","MAHANG","MAUMH","QTY"]
   const posts=[];
 //   console.log(req.body);
   var file = req.files.filename;
@@ -99,7 +99,7 @@ try {
                 post.MAHANG=worksheet[cell].v;
             }
             if(cellAsString[0]==='F'){
-                post.MAUSP=worksheet[cell].v;
+                post.MAUMH=worksheet[cell].v;
             }
             if(cellAsString[0]==='G'){
                 post.QTY=worksheet[cell].v;
@@ -114,15 +114,15 @@ try {
   console.log(posts[0]);  
 //   var super_array =[];
   for (let i = 0 ; i <posts.length; i++){
-     db.query(`wacoal_ORDERITEM_Insert_V3 @ORDERNO=:ORDERNO, @MAKH=:MAKH , @TENKH=:TENKH, @UNIT=:UNIT, @MAHANG=:MAHANG,
-     @MAUSP=:MAUSP, @QTY=:QTY, @USERNAME=:USERNAME`,{
+     db.query(`wacoal_ORDERITEM_Insert_V4 @ORDERNO=:ORDERNO, @MAKH=:MAKH , @TENKH=:TENKH, @UNIT=:UNIT, @MAHANG=:MAHANG,
+     @MAUMH=:MAUMH, @QTY=:QTY, @USERNAME=:USERNAME`,{
       replacements: {
         ORDERNO: posts[i].ORDERNO,
         MAKH:posts[i].MAKH,
         TENKH:posts[i].TENKH,
         UNIT:posts[i].UNIT,
         MAHANG:posts[i].MAHANG,
-        MAUSP:posts[i].MAUSP,
+        MAUMH:posts[i].MAUMH,
         QTY:posts[i].QTY,
         USERNAME:req.signedCookies.userId,
      }
