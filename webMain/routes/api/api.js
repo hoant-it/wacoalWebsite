@@ -2,229 +2,43 @@ var express = require('express');
 const db= require('../../databases/database').sequelize;
 // var CryptoJS = require("crypto-js");
 var router = express.Router();
-
+const ControlLoaiChi=require('../../Controlers/api/api.LoaiChi');
+const ControlMauChiMauNL=require('../../Controlers/api/api.MauChiMauNL');
+const ControlApiRule=require('../../Controlers/api/api.Rule');
+const ControlApiRole=require('../../Controlers/api/api.Role');
+const ControlApiTinhChi=require('../../Controlers/api/api.TinhChi');
+const LoaiMayApi=require('../../Controlers/api/LoaiMay.Api');
+const CongThucTinhChiApi= require('../../Controlers/api/CongThucTinhChi.api');
+const KhachHangApi=require('../../Controlers/api/api.KhachHang');
 // /* GET treelist. */
-router.get('/treelist/:ruleCode',async(req,res) => {
-    const{ruleCode}=req.params
-    try {
-        await db.query("wacoal_ListMenu_By_Rule_Load_Web_v2 @PermisionGroupCode=:PermisionGroupCode ",{
-            replacements:{PermisionGroupCode:ruleCode}
 
-        }).then(function(data){
-            res.json({
-                // result:"ok",
-                data:data[0],
-                // message:'query list NGGROUPASSYPR sucessfully'
-            })
-        })
-        
-    } catch (error) {
-        res.json({
-            result:"failed",
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    };
-});
+//rule
+router.get('/treelist/:ruleCode',ControlApiRule.MenuListByRuleLoad);
+router.get('/gridview/:ruleCode',ControlApiRule.MenuListLoadWeb);
 
+//role
+router.get('/gridviewRuleInRole/:roleCode',ControlApiRole.RuleInRoleLoad);
+router.get('/gridviewRuleList/:roleCode',ControlApiRole.ListPermisionGroupLoad);
+router.get('/gridviewUserInRole/:roleCode', ControlApiRole.UserInRoleLoad);
+router.get('/gridviewUserList/:roleCode', ControlApiRole.UserListLoad);
 
-router.get('/gridview/:ruleCode', async( req, res) => {
-    const{ruleCode}=req.params
-    try {
-        await db.query('wacoal_ListMenu_Load_web_V1 @PermisionGroupCode=:PermisionGroupCode',{
-            replacements:{PermisionGroupCode:ruleCode}
-        }).then(data=>{
-            res.json({
-                data:data[0],
-                message:'ok'
-            })
-        }).catch(err => {
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-        
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
+//Tinhchi
+router.get('/khoOrderTinhchiGridview/:Order/:KhachHang', ControlApiTinhChi.khoOrderTinhchiGridview);
+router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang', ControlApiTinhChi.khoOrderTinhchiGridviewMaHangMiss);
+router.get('/Khowacoal_KHACHHANG_load_Web_V1', KhachHangApi.Khowacoal_KHACHHANG_load_Web_V1);
 
-router.get('/gridviewRuleInRole/:roleCode', async( req, res ) => {
-    const{roleCode}=req.params;
- 
-    try {
-        await db.query('wacoal_Rule_In_Role_Load_Web_V1 @GroupUserCode=:GroupUserCode',{
-            replacements:{GroupUserCode:roleCode}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
+//MAUCHIMAUNL
+router.get('/wacoal_MAUCHIMAUNL_Load_Web_V1', ControlMauChiMauNL.MauChiMauNLLoad)
 
-router.get('/gridviewRuleList/:roleCode', async( req, res ) => {
-    const{roleCode}=req.params;
- 
-    try {
-        await db.query('wacoal_ListPermisionGroup_Load_web_V1 @GroupUserCode=:GroupUserCode',{
-            replacements:{GroupUserCode:roleCode}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
+//loai chi
+router.get('/wacoal_LOAICHIITEM_Load_V1',ControlLoaiChi.LoaiChiLoad)
+//loai may
+router.get('/wacoal_LoaiMay_Load_Web_V1',LoaiMayApi.wacoal_LoaiMay_Load_Web_V1)
 
+//Cong Thuc Tinh Chi
+router.get('/wacoal_CONGTHUCTINHCHIITEM_Load_Web_V1',CongThucTinhChiApi.wacoal_CONGTHUCTINHCHIITEM_Load_Web_V1)
 
-router.get('/gridviewUserInRole/:roleCode', async( req, res ) => {
-    const{roleCode}=req.params;
- 
-    try {
-        await db.query('wacoal_UserInRole_Load_Web_V1 @GroupUserCode=:GroupUserCode',{
-            replacements:{GroupUserCode:roleCode}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
-
-router.get('/gridviewUserList/:roleCode', async( req, res ) => {
-    const{roleCode}=req.params;
- 
-    try {
-        await db.query('wacoal_ListUser_load_v1 ',{
-            replacements:{}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
-
-router.get('/khoOrderTinhchiGridview/:Order/:KhachHang', async( req, res ) => {
-    const{Order,KhachHang}=req.params;
- console.log(req.params);
-      
-    try {
-        await db.query('wacoal_Load_TinhChiOrder_V6 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
-            replacements:{ORDERNO:  Order, MAKH:KhachHang}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
-
-
-router.get('/khoOrderTinhchiGridviewMaHangMiss/:Order/:KhachHang', async( req, res ) => {
-    const{Order,KhachHang}=req.params;
- console.log(req.params);
-      
-    try {
-        await db.query('wacoal_OrderTinhChiMaHangMiss_Web_v1 @ORDERNO=:ORDERNO, @MAKH=:MAKH ',{
-            replacements:{ORDERNO:  Order, MAKH:KhachHang}
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
-
-
-router.get('/Khowacoal_KHACHHANG_load_Web_V1', async( req, res ) => {
-    const{Order,KhachHang}=req.params;
- console.log(req.params);
-      
-    try {
-        await db.query('wacoal_KHACHHANG_load_Web_V1',{
-           
-        }).then(result => {
-            res.json({
-                data:result[0]
-            })
-        }).catch(err =>{
-            res.json({
-                data:[],
-                message:"err: "+err.message
-            })
-        })
-    } catch (error) {
-        res.json({
-            data:{},
-            message:`Query Failed. Error: ${error}`
-        })
-    }
-})
+//Vi Tri Chi
+router.get(`/wacoal_VITRICHIITEM_Load_Web_V1`,ControlApiTinhChi.wacoal_VITRICHIITEM_Load_Web_V1);
 
 module.exports = router;

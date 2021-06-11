@@ -82,15 +82,15 @@ function init_sidebar() {
             });
         } else {
             // prevent closing menu if we are on child menu
-            if (!$li.parent().is('.child_menu')) {
-                openUpMenu();
-            } else {
-                if ($BODY.is('nav-sm')) {
-                    if (!$li.parent().is('child_menu')) {
-                        openUpMenu();
-                    }
-                }
-            }
+            // if (!$li.parent().is('.child_menu')) {
+            //     openUpMenu();
+            // } else {
+            //     if ($BODY.is('nav-sm')) {
+            //         if (!$li.parent().is('child_menu')) {
+            //             openUpMenu();
+            //         }
+            //     }
+            // }
 
             $li.addClass('active');
 

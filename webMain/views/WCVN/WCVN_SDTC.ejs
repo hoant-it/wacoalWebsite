@@ -4,7 +4,7 @@
 <head>
    <% include ../block/head %>
 </head>
-<body class="nav-md footer_fixed">
+<body class="nav-md footer_fixed" onload="loadPdf()">
     <div class="container body">
         <div class="main_container">
             <% include ../block/leftpanelV2 %>
@@ -32,9 +32,8 @@
                             </div>
 
                             <div class="x_content" id="xcontentid">
-
-                                <embed src="../../pdf/Or_chart_4_2020.pdf" width="100%" height="750"  type="application/pdf; min-height=100vh; width=100%">
-
+                                <!-- <embed id="embedPdfLoad"> -->
+                               <iframe src="/pdf/Or_chart_4_2020.pdf" frameborder="0" width="100%" height="750px">  </iframe>
                             </div>
                         </div>
                     </div>
@@ -56,5 +55,8 @@
         </div>
     </div>
   <% include ../block/script %>
+<!-- <script src="/javascripts/WCVN/WCVN_SDTCjs.js"></script> -->
+
 </body>
+
 </html>

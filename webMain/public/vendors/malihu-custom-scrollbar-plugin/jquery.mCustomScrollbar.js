@@ -109,11 +109,13 @@ and dependencies (minified).
 			values (string): "inside", "outside" ("outside" requires elements with position:relative)
 			*/
 			scrollbarPosition:"inside",
+			// scrollbarPosition:"outside",
 			/*
 			scrolling inertia
 			values: integer (milliseconds)
 			*/
 			scrollInertia:950,
+			// scrollInertia:500,
 			/* 
 			auto-adjust scrollbar dragger length
 			values: boolean
@@ -132,7 +134,7 @@ and dependencies (minified).
 				option						default
 				-------------------------------------
 				autoExpandScrollbar			false
-			*/
+			
 			/*
 			always show scrollbar, even when there's nothing to scroll 
 			values: integer (0=disable, 1=always show dragger rail and buttons, 2=always show dragger rail, dragger and buttons), boolean
@@ -164,6 +166,7 @@ and dependencies (minified).
 				values: "auto", integer 
 				*/
 				scrollAmount:"auto",
+				// scrollAmount:"160",
 				/* 
 				mouse-wheel scrolling axis 
 				the default scrolling direction when both vertical and horizontal scrollbars are present 
@@ -257,6 +260,7 @@ and dependencies (minified).
 			integer values define the axis-specific minimum amount required for scrolling momentum
 			*/
 			contentTouchScroll:25,
+			// contentTouchScroll:100,
 			/*
 			enable/disable document (default) touch-swipe scrolling 
 			*/
@@ -296,12 +300,14 @@ and dependencies (minified).
 					-------------------------------------
 					updateOnSelectorChange		null
 				*/
+				
 				/*
 				extra selectors that'll allow scrollbar dragging upon mousemove/up, pointermove/up, touchend etc. (e.g. "selector-1, selector-2")
 					option						default
 					-------------------------------------
 					extraDraggableSelectors		null
 				*/
+				
 				/*
 				extra selectors that'll release scrollbar dragging upon mouseup, pointerup, touchend etc. (e.g. "selector-1, selector-2")
 					option						default

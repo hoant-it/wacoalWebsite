@@ -4,40 +4,6 @@ const db= require('../databases/database').sequelize;
 var CryptoJS = require("crypto-js");
 var milderedirectHome= require('../middlewares/middle.redirectHome').redirectHome;
 
-// result=[];
-
-// function data_Tree(arr,parent_id="0", level=0){
-// arr.forEach(element => {
-//   if(element["parent_id"]=== parent_id){
-//     element["level"]=level;
-//     if(element["href"]===""){
-//       if(level===0){
-//         html+=`<li class="active"><a> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
-//         html+=`<ul class="nav child_menu">`;
-//       }
-//       else {
-//         html+=`<li><a> ${element["title"]} <span class="fa fa-chevron-down"></span></a>`;
-//         html+=`<ul class="nav child_menu">`;
-//       }
-   
-//     result.push(element);
-//     child=data_Tree(arr,element["id"],level + 1);
-//       result.concat(child);
-//       html+=`</ul>`
-//     html+=`</li>`
-//     }
-//     else{
-//       html+=`<li><a href="${element["href"]}"> ${element["title"]}</a>`;
-//     result.push(element);
-//     child=data_Tree(arr,element["id"],level + 1);
-//       result.concat(child);
-//     html+=`</li>`
-//     }
-//   }
-// });
-// return result;
-// }
-
 router.get('/',milderedirectHome, async(req,res) =>{
   res.render('login',{
     messageError:"",
@@ -56,7 +22,10 @@ router.post('/',milderedirectHome,async(req,res) =>{
   // console.log(dataUserA);
   })
     if(dataUserA.length<1){
-      res.redirect('/login')
+      res.render('login',{
+        messageError:"User Name không tồn tại",
+        html:""
+      });
     }
     else{
       var bytes = CryptoJS.AES.decrypt(dataUserA[0].WebPass, 'itsasecret123');
@@ -64,7 +33,7 @@ router.post('/',milderedirectHome,async(req,res) =>{
       var message_decode = bytes.toString(CryptoJS.enc.Utf8);
       // console.log(`chuỗi đã được giải mã hóa : ${message_decode}`);
       // console.log(`pass la  : ${req.body.password}`);
-      if(message_decode===req.body.password){
+      if(message_decode===password){
         res.cookie('userId',userName,{
           signed:true
         })
@@ -77,7 +46,11 @@ router.post('/',milderedirectHome,async(req,res) =>{
         res.redirect('/home')
       }
       else{
-        res.redirect('/Login')
+        return  res.render('login',{
+          messageError:"Password không đúng",
+          html:""
+        });
+        // res.redirect('/Login')
       }
     }
 });

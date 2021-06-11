@@ -6,9 +6,6 @@ var logger = require('morgan');
 const session = require('express-session');
 const upload=require('express-fileupload');
 
-
-
-
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 const homeRouter=require('./routes/home/home');
@@ -17,60 +14,48 @@ const loginRouter=require('./routes/login');
 const logoutRouter= require('./routes/logout');
 const changePasswordRouter= require('./routes/changePassword');
 
+//VietNam Wacoal
+// const VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
+const VNWCRouter=require('./routes/WCVN/WCVN.routes');
+//San Xuat
+const SanXuat_Router= require('./routes/SanXuat/SanXuat.Route');
 
 //kho
-const KhoSDTCRouter=require('./routes/Kho/KhoSDTC');
-const KhoQTRouter=require('./routes/Kho/KhoQT');
-const KhoQCTCRouter=require('./routes/Kho/KhoQCTC');
-const KhoDMC_Router=require('./routes/Kho/KhoDMC');
-const Kho_QTQLNVL_Router=require('./routes/Kho/Kho_QTQLNVL');
-const KhoQTDatChi_Router=require('./routes/Kho/KhoQTDatChi');
-const KhoOrderInput_Router=require('./routes/Kho/KhoOrderInput');
-const KhoOrderInput_RouterV2=require('./routes/Kho/KhoOrderInputV2');
-const KhoProductCode_Router= require('./routes/Kho/KhoProductCode');
-const KhoProductColor_Router=require('./routes/Kho/Kho_ProductColor');
-const KhoProducSize_Router=require('./routes/Kho/KhoProoductsize');
-const KhoLoaiChi_Router=require('./routes/Kho/KhoLoaiChi');
-const KhoLoaiMay_Router=require('./routes/Kho/KhoLoaiMay');
-const KhoDMCInput_Router=require('./routes/Kho/KhoDMCInput');
-const KhoCongDoanMaHangInput_Router=require('./routes/Kho/KhoCongDoanMaHangInput');
+const Kho_Router=require('./routes/Kho/routes.Kho');
+// const KhoQCTCRouter=require('./routes/Kho/KhoQCTC'); //xem xet loai bo
+// const KhoOrderInput_Router=require('./routes/Kho/KhoOrderInput');
+// const KhoOrderInput_RouterV2=require('./routes/Kho/KhoOrderInputV2');
+// const KhoProductCode_Router= require('./routes/Kho/KhoProductCode');
+// const KhoProductColor_Router=require('./routes/Kho/Kho_ProductColor');
+// const KhoProducSize_Router=require('./routes/Kho/KhoProoductsize');
+// const KhoLoaiChi_Router=require('./routes/Kho/KhoLoaiChi');
+// const KhoLoaiMay_Router=require('./routes/Kho/KhoLoaiMay');
+// const KhoDMCInput_Router=require('./routes/Kho/KhoDMCInput');
+// const KhoCongDoanMaHangInput_Router=require('./routes/Kho/KhoCongDoanMaHangInput');
+// const KhoOrderTinhChi_Router=require('./routes/Kho/KhoOrderTinhChi');
 
-const KhoOrderTinhChi_Router=require('./routes/Kho/KhoOrderTinhChi');
-const KhoOrderTinhChiV2_Router=require('./routes/Kho/KhoOrderTinhChiV2');
-const KhoCDMHChiKhacMauInput_Router=require('./routes/Kho/Kho_CDMH_ChiKhacMau_Input');
-const KhoOderTinhChiGridViewDev_Router=require('./routes/Kho/KhoOrderTinhChiGridViewDev');
-
-const KhoMauNL_MauMH_Router=require('./routes/Kho/MauNL_MauMH_Input');
-
-//VietNam Wacoal
-var VNWCSDTCCRouter=require('./routes/WCVN/wcvn_sdtc');
-//admin
-const userListRouter2=require('./routes/admin/userListV2');
-const listMenuRouter=require('./routes/admin/ListMenu');
-const menuPermissionRouter= require('./routes/admin/menuPermission');
-const RolePermissionRouter=require('./routes/admin/RolePermission');
-const ListDeparmentRouter=require('./routes/admin/ListDeparment');
-const PoisitionListRouter=require('./routes/admin/PoisitionList');
-const CompanyListRouter= require('./routes/admin/CompanyList');
 //Cat
-const CatSDTC_Router=require('./routes/Cat/CatSDTC');
-const CatTDLCard_Router=require('./routes/Cat/CatTDLCard');
-const CatLLKH_Router=require('./routes/Cat/CatLLKHCard');
-const CatMasterPattern_Router=require('./routes/Cat/CatMasterPattern');
-const CatGKT_Router=require('./routes/Cat/CatGKT');
+const cat_Router=require('./routes/Cat/routes.cat');
+// const CatSDTC_Router=require('./routes/Cat/CatSDTC');
+// const CatTDLCard_Router=require('./routes/Cat/CatTDLCard');
+// const CatLLKH_Router=require('./routes/Cat/CatLLKHCard');
+// const CatMasterPattern_Router=require('./routes/Cat/CatMasterPattern');
+// const CatGKT_Router=require('./routes/Cat/CatGKT');
+
 //May
-const MayQTSX_Router=require('./routes/May/MayQTSX');
-//San Xuat
-const SanXuatQTSX_Router= require('./routes/SanXuat/SXQTSX');
+const May_Router=require('./routes/May/May.Routes');
+
 //KiemPham
-const QTKP_Router=require('./routes/KiemPham/QTKP');
+const KiemPham_Router=require('./routes/KiemPham/KiemPham.routes');
+
 //Ki Thuat
-const QTKT_Router=require('./routes/KiThuat/QuyTrinhKiThuat');
+const QTKT_Router=require('./routes/KiThuat/KiThuat.routes');
+
+//admin
+const admin_Roter=require('./routes/admin/routes.admin');
 
 //api
 const apiData_Router= require('./routes/api/api');
-
-
 
 // const IN_PROD= node
 
@@ -112,54 +97,48 @@ app.use('/test',testRouter)
 app.use('/login',loginRouter);
 app.use('/changepassword',changePasswordRouter);
 
+// app.use('/home/kho/QCTC',KhoQCTCRouter);
+//VNWC
+app.use('/VNWC',VNWCRouter);
+// app.use('/home/VNWC/VNWC_SDTC',VNWCSDTCCRouter);
 
-app.use('/home/Kho/khoSDTC',KhoSDTCRouter);
-app.use('/home/kho/KhoQT',KhoQTRouter);
-app.use('/home/kho/QCTC',KhoQCTCRouter);
-app.use('/home/VNWC/VNWC_SDTC',VNWCSDTCCRouter);
 app.use('/logout',logoutRouter);
-app.use('/home/kho/DMC',KhoDMC_Router)
-
 //admin
-
-app.use('/admin/userlistv2', userListRouter2);
-app.use('/admin/listmenu',listMenuRouter);
-app.use('/admin/menuPermission',menuPermissionRouter);
-app.use('/admin/rolePermission',RolePermissionRouter);
-app.use('/admin/department',ListDeparmentRouter);
-app.use('/admin/positionlist',PoisitionListRouter);
-app.use('/admin/company',CompanyListRouter);
+app.use('/admin',admin_Roter);
+// app.use('/admin/userlistv2', userListRouter2);
+// app.use('/admin/listmenu',listMenuRouter);
+// app.use('/admin/menuPermission',menuPermissionRouter);
+// app.use('/admin/rolePermission',RolePermissionRouter);
+// app.use('/admin/department',ListDeparmentRouter);
+// app.use('/admin/positionlist',PoisitionListRouter);
+// app.use('/admin/company',CompanyListRouter);
 //cat
-app.use('/Cat/SDTC',CatSDTC_Router);
-app.use('/Cat/TDLCard',CatTDLCard_Router);
-app.use('/Cat/LLKHCard',CatLLKH_Router);
-app.use('/Cat/CatMasterPattern',CatMasterPattern_Router);
-app.use('/Cat/GKT',CatGKT_Router);
-//may
-app.use('/May/QTSX',MayQTSX_Router);
+app.use('/cat',cat_Router)
+// app.use('/Cat/SDTC',CatSDTC_Router);
+// app.use('/Cat/TDLCard',CatTDLCard_Router);
+// app.use('/Cat/LLKHCard',CatLLKH_Router);
+// app.use('/Cat/CatMasterPattern',CatMasterPattern_Router);
+// app.use('/Cat/GKT',CatGKT_Router);
+//May
+app.use('/May',May_Router);
 //kho
-app.use('/Kho/QTQLNVL',Kho_QTQLNVL_Router);
-app.use('/kho/QTDC',KhoQTDatChi_Router);
-app.use('/kho/InputOrder',KhoOrderInput_Router);
-app.use('/kho/inputorderv2',KhoOrderInput_RouterV2);
-app.use('/kho/productcode',KhoProductCode_Router);
-app.use('/kho/prodcolor',KhoProductColor_Router);
-app.use('/kho/productsize',KhoProducSize_Router);
-app.use('/kho/loaichi',KhoLoaiChi_Router);
-app.use('/kho/loaimay',KhoLoaiMay_Router);
-app.use('/kho/DMCInput',KhoDMCInput_Router);
-app.use('/kho/congodanmahanginput',KhoCongDoanMaHangInput_Router);
-app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
-app.use('/kho/ordertinhchiv2',KhoOrderTinhChiV2_Router);
-app.use('/kho/CDMHchikhacmauinput',KhoCDMHChiKhacMauInput_Router);
-app.use('/kho/KhoOderTinhChiGridViewDev', KhoOderTinhChiGridViewDev_Router);
-app.use('/kho/MauNLMauMaHang',KhoMauNL_MauMH_Router);
+app.use('/kho',Kho_Router);
+// app.use('/kho/InputOrder',KhoOrderInput_Router);
+// app.use('/kho/inputorderv2',KhoOrderInput_RouterV2);
+// app.use('/kho/productcode',KhoProductCode_Router);
+// app.use('/kho/prodcolor',KhoProductColor_Router);
+// app.use('/kho/productsize',KhoProducSize_Router);
+// app.use('/kho/loaichi',KhoLoaiChi_Router);
+// app.use('/kho/loaimay',KhoLoaiMay_Router);
+// app.use('/kho/DMCInput',KhoDMCInput_Router);
+// app.use('/kho/congodanmahanginput',KhoCongDoanMaHangInput_Router);
+// app.use('/kho/ordertinhchi',KhoOrderTinhChi_Router);
 //San Xuat
-app.use('/SX/QTSX',SanXuatQTSX_Router);
+app.use('/SX',SanXuat_Router);
 //Kiem Pham
-app.use('/kiempham/QTKP',QTKP_Router);
+app.use('/kiempham',KiemPham_Router);
 //Ki Thuat
-app.use('/kithuat/QTKT',QTKT_Router);
+app.use('/kithuat',QTKT_Router);
 //api
 app.use('/api',apiData_Router);
 

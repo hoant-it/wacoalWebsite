@@ -58,7 +58,7 @@ const saveData = () => {
             success: function(res) {
                 if (res=== 'ok') {
                     // console.log('success');
-                    console.log(JSON.stringify(res));
+                    // console.log(JSON.stringify(res));
                     $('#modalAddUpdate').modal('hide');
                     alert("Update success");
                     location.reload();

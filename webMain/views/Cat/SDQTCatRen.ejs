@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Quy Trinh Cat -->
+<head>
+    <% include ../block/head %>
+</head>
+
+<body class="nav-md footer_fixed">
+    <div class="container body">
+        <div class="main_container">
+            <% include ../block/leftpanelV2 %>
+                <% include ../block/toppanelV2 %>
+                    <!-- page content -->
+                    <div class="right_col " role="main" style="min-height: 100vh">
+                        <div class="">
+                            <div class="page-title">
+                                <div class="title_left">
+                                    <h3> <small><strong></strong></small></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <img id="img_ID" src="/images/cat/SDQTCatRenImage.png" width="100%" height="600px" alt="Planets" usemap="#map" >
+                                <map id="map" name="map">
+                                    <area shape="rect" coords="40,190,170,350" href="/cat/NHANRENSENPATSU" alt="NHANRENSENPATSU">
+                                    <!-- THAOXEPREN_HANGSENPATSU -->
+                                    <area shape="rect" coords="220,190,350,350" href="/cat/THAOXEPREN_HANGSENPATSU" alt="THAOXEPREN_HANGSENPATSU">
+                                    <!-- GIACSODODINHMUCTUNGSIZE -->
+                                    <area shape="rect" coords="380,210,530,350" href="/cat/GIACSODODINHMUCTUNGSIZE" alt="GIACSODODINHMUCTUNGSIZE">
+                                    <!-- LIENLACKHACHHANGXULY_RV -->
+                                    <area shape="rect" coords="380,50,530,180" href="/cat/LIENLACKHACHHANGXULY_RV" alt="LIENLACKHACHHANGXULY_RV">
+
+                                    <!-- LAMBANGHUONGDANCATREN -->
+                                    <area shape="rect" coords="580,190,710,350" href="/cat/LAMBANGHUONGDANCATREN" alt="LAMBANGHUONGDANCATREN">
+                                    <!-- CAT_VA_KIEM_TRA_MC_VOI_PATTERN -->
+                                    <area shape="rect" coords="750,190,870,350" href="/cat/CAT_VA_KIEM_TRA_MC_VOI_PATTERN" alt="CAT_VA_KIEM_TRA_MC_VOI_PATTERN">
+                                    <!-- GIAOKYTHUAT -->
+                                    <area shape="rect" coords="920,190,1050,350" href="/cat/GIAOKYTHUAT" alt="GIAOKYTHUAT">
+
+                                </map>
+
+                            </div>
+                        </div>
+
+                       
+                    
+                      
+                    </div>
+                    <!-- /page content -->
+
+                    <!-- footer content -->
+                    <footer>
+                        <div class="pull-right">
+                            Wacoal - Bootstrap Admin Template by <a href="/home">Thai Hoa</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
+        </div>
+    </div>
+    
+    <% include ../block/script %>
+</body>
+<script type="text/javascript" src="/js/imageMapResizer.min.js"></script>
+<script type="text/javascript">
+
+    $('map').imageMapResize();
+
+</script>
+
+<!-- <script src="/javascripts/cat/CatSDTC.js"></script> -->
+
+<script language="JavaScript">
+    var firefox=document.getElementById&&!document.all;
+    document.onmousemove=mouseMove;
+    function mouseMove(e){
+    var str;
+    // str=screen.width;
+    if (firefox) str="x="+e.clientX+", y="+e.clientY;
+    else str="x="+event.clientX+", y="+event.clientY;
+
+    document.title=str;
+    }
+    </script>
+
+
+
+</html>
